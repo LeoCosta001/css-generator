@@ -1,0 +1,22 @@
+// Constants
+import { propertySelectMenuWidth, headerBarHeight } from '../../../shared/constants/layout.constants';
+// Material-ui
+import {
+    makeStyles,
+    Theme,
+    createStyles
+} from '@material-ui/core/styles';
+
+export const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        container: {
+            marginTop: headerBarHeight
+        },
+
+        content: {
+            paddingLeft: propertySelectMenuWidth + theme.spacing(1),
+            flexGrow: 1,
+            padding: theme.spacing(1),
+        },
+    }),
+);
