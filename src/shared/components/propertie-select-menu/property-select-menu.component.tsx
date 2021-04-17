@@ -51,6 +51,7 @@ const PropertySelectMenu = (): JSX.Element => {
                                 classes={{ root: classes.iconHover }}
                                 size="small"
                                 aria-label="Remover todos os estilos"
+                                onClick={() => alert('Em breve!')}
                             >
                                 <DeleteForeverIcon />
                             </IconButton>
@@ -61,6 +62,7 @@ const PropertySelectMenu = (): JSX.Element => {
                                 classes={{ root: classes.iconHover }}
                                 size="small"
                                 aria-label="Estilos prontos"
+                                onClick={() => alert('Em breve!')}
                             >
                                 <WidgetsIcon />
                             </IconButton>
@@ -71,6 +73,7 @@ const PropertySelectMenu = (): JSX.Element => {
                                 classes={{ root: classes.iconHover }}
                                 size="small"
                                 aria-label="Informações sobre as propriedades"
+                                onClick={() => alert('Em breve!')}
                             >
                                 <InfoIcon />
                             </IconButton>

@@ -1,5 +1,6 @@
 // Components
 import { ToggleTheme } from '../toggle-theme/toggle-theme.component';
+import { ChangeLanguage } from '../change-language/change-language.component';
 //Style
 import { useStyles } from './header-bar.style';
 // Material-ui
@@ -29,13 +30,17 @@ export const HeaderBar = (): JSX.Element => {
                     aria-label="Abrir Menu"
                     edge="start"
                     className={classes.menuButton}
+                    onClick={() => alert('Em breve!')}
                 >
                     <MenuIcon />
                 </IconButton>
                 <Box display="flex" flexDirection="row-reverse" flex="auto">
                     <ToggleTheme />
+                    <Box mr={1}>
+                        <ChangeLanguage />
+                    </Box>
                 </Box>
             </Toolbar>
-        </AppBar>
+        </AppBar >
     );
 }
