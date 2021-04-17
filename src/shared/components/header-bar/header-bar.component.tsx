@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 // Components
 import { ToggleTheme } from '../toggle-theme/toggle-theme.component';
 //Style
@@ -29,7 +28,7 @@ export const HeaderBar = (): JSX.Element => {
                     size="small"
                     aria-label="Abrir Menu"
                     edge="start"
-                    className={clsx(classes.menuButton)}
+                    className={classes.menuButton}
                 >
                     <MenuIcon />
                 </IconButton>

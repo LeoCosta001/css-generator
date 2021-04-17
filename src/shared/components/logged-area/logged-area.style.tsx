@@ -1,5 +1,5 @@
 // Constants
-import { propertySelectMenuWidth, headerBarHeight } from '../../../shared/constants/layout.constants';
+import { propertySelectMenuWidth, headerBarHeight } from '../../constants/layout.constant';
 // Material-ui
 import {
     makeStyles,

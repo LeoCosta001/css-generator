@@ -1,4 +1,3 @@
-import { Action } from 'redux';
 // Models
 import { PROPERTY_NAME } from '../property-name.model';
 import {
@@ -29,19 +28,13 @@ export interface TextAppPropertySettings {
 }
 
 export interface TextAppProperty {
-    name: string;
     property: PROPERTY_NAME;
+    description: string;
     isActive: boolean;
     propertySettings: TextAppPropertySettings;
 }
 
 export interface TextAppPropertyState {
-    selected: TextAppProperty | null;
+    selected: PROPERTY_NAME;
     list: TextAppProperty[];
-}
-
-// Action
-export interface ToggleAppPropertyAction extends Action {
-    type: 'TOGGLE_APP_PROPERTY';
-    propertyName: string;
 }
