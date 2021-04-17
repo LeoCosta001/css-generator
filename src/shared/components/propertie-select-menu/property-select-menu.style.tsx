@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 
         iconHover: {
             "&:hover": {
-                color: theme.palette.secondary.main,
+                color: theme.palette.primary.main,
             }
         }
     }),
