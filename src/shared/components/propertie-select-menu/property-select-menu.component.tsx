@@ -1,9 +1,12 @@
-import { connect, MapStateToPropsParam } from 'react-redux';
-// Actions
-import { toggleAppProperty } from '../../../store-config/actions/app-property.actions';
+import { useSelector } from 'react-redux';
+// Reducer
+import { actionAppProperty } from '../../../store-config/actions/app-property.actions';
+// Models
+import { TextAppProperty, TextAppPropertyState } from '../../models/reducers/text-app-property.model';
+import { AllReducerState } from '../../models/reducers/all-reducer-state.model';
 // Style
 import { useStyles } from "./property-select-menu.style";
-// Material
+// Material-ui
 import {
     Drawer,
     List,
@@ -23,78 +26,11 @@ import {
     Info as InfoIcon,
 } from '@material-ui/icons';
 
-// Interfaces
-export interface AppPropertyList {
-    name: string;
-    property: string;
-    isActive: boolean;
-}
-
-interface PropertySelectMenuProps {
-    appPropertyList: AppPropertyList[];
-    dispatch: any
-}
-
-const PropertySelectMenu = (props: PropertySelectMenuProps): JSX.Element => {
+const PropertySelectMenu = (): JSX.Element => {
     const classes = useStyles();
 
-    const drawer = (
-        <>
-            <Toolbar variant="dense" className={classes.toolBar}>
-                <Tooltip title="Remover estilos" arrow>
-                    <IconButton
-                        classes={{ root: classes.iconHover }}
-                        size="small"
-                        aria-label="Remover estilos"
-                    >
-                        <DeleteForeverIcon />
-                    </IconButton>
-                </Tooltip>
-
-                <Tooltip title="Estilos prontos" arrow>
-                    <IconButton
-                        classes={{ root: classes.iconHover }}
-                        size="small"
-                        aria-label="Estilos prontos"
-                    >
-                        <WidgetsIcon />
-                    </IconButton>
-                </Tooltip>
-
-                <Tooltip title="Infommações sobre as propriedades" arrow>
-                    <IconButton
-                        classes={{ root: classes.iconHover }}
-                        size="small"
-                        aria-label="Informações sobre as propriedades"
-                    >
-                        <InfoIcon />
-                    </IconButton>
-                </Tooltip>
-            </Toolbar>
-
-            <Divider />
-
-            <List>
-                {// @ts-ignore
-                    props.appPropertyList.map((appProperty: AppPropertyList): JSX.Element => (
-                        <ListItem button dense key={appProperty.property} onClick={() => console.log(`propriedade ${appProperty.property} selecionada`)}>
-                            <ListItemText id={'labelId'} primary={appProperty.name} />
-                            <ListItemText id={'labelId2'} primary={appProperty.property} />
-
-                            <ListItemSecondaryAction>
-                                <Switch
-                                    color="secondary"
-                                    size="small"
-                                    onChange={() => props.dispatch(toggleAppProperty(appProperty.property))}
-                                    checked={appProperty.isActive}
-                                    inputProps={{ 'aria-labelledby': `Interrupitor de ${appProperty.name}` }}
-                                />
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    ))}
-            </List>
-        </>
-    );
+    // Redux selectors
+    const textAppProperty: TextAppPropertyState = useSelector((state: AllReducerState) => state.textAppProperty);
 
     return (
         <Hidden xsDown implementation="css">
@@ -105,11 +41,62 @@ const PropertySelectMenu = (props: PropertySelectMenuProps): JSX.Element => {
                 variant="permanent"
                 open
             >
-                {drawer}
+                <Toolbar variant="dense" className={classes.toolBar}>
+                    <Tooltip title="Remover estilos" arrow>
+                        <IconButton
+                            classes={{ root: classes.iconHover }}
+                            size="small"
+                            aria-label="Remover estilos"
+                        >
+                            <DeleteForeverIcon />
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Estilos prontos" arrow>
+                        <IconButton
+                            classes={{ root: classes.iconHover }}
+                            size="small"
+                            aria-label="Estilos prontos"
+                        >
+                            <WidgetsIcon />
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Infommações sobre as propriedades" arrow>
+                        <IconButton
+                            classes={{ root: classes.iconHover }}
+                            size="small"
+                            aria-label="Informações sobre as propriedades"
+                        >
+                            <InfoIcon />
+                        </IconButton>
+                    </Tooltip>
+                </Toolbar>
+
+                <Divider />
+
+                <List>
+                    {
+                        textAppProperty.list.map((textProperty: TextAppProperty): JSX.Element => (
+                            <ListItem button dense key={textProperty.property} onClick={() => console.log(`propriedade ${textProperty.property} selecionada`)}>
+                                <ListItemText id={'labelId'} primary={textProperty.name} />
+                                <ListItemText id={'labelId2'} primary={textProperty.property} />
+
+                                <ListItemSecondaryAction>
+                                    <Switch
+                                        color="primary"
+                                        size="small"
+                                        onChange={() => actionAppProperty.toggleAppProperty(textProperty.property)}
+                                        checked={textProperty.isActive}
+                                        inputProps={{ 'aria-labelledby': `Interrupitor de ${textProperty.name}` }}
+                                    />
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                </List>
             </Drawer>
         </Hidden>
     );
 }
 
-// @ts-ignore
-export default connect((state: MapStateToPropsParam<any, {}, any>) => ({ appPropertyList: state.appProperty.list }))(PropertySelectMenu)
+export default PropertySelectMenu;

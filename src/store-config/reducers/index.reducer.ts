@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
-import appProperty from './app-property.reducer';
+// Reducers
+import textAppProperty from './text-app-property.reducer';
 
 export default combineReducers({
-    appProperty
+    textAppProperty
 });
