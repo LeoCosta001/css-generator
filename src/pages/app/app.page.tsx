@@ -1,7 +1,7 @@
-import React from 'react';
 // Components
 import { LoggedArea } from '../../shared/components/logged-area/logged-area.component';
-import PropertySelectMenu from '../../shared/components/propertie-select-menu/property-select-menu.component';
+import { PropertyConfigMenu } from '../../shared/components/property-config-menu/property-config-menu.component';
+import { PropertySelectMenu } from '../../shared/components/property-select-menu/property-select-menu.component';
 import { TextApp } from './text-app/text-app.component';
 
 const AppPage = (): JSX.Element => {
@@ -10,6 +10,7 @@ const AppPage = (): JSX.Element => {
             <>
                 <PropertySelectMenu />
                 <TextApp />
+                <PropertyConfigMenu />
             </>
         </LoggedArea>
     )

@@ -6,16 +6,16 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         drawerContainer: {
-            overflow: 'auto',
+            overflow: 'auto'
         },
 
         drawer: {
             width: propertySelectMenuWidth,
-            flexShrink: 0,
+            flexShrink: 0
         },
 
         drawerPaper: {
-            width: propertySelectMenuWidth,
+            width: propertySelectMenuWidth
         },
 
         toolBar: {
@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 
         iconHover: {
             "&:hover": {
-                color: theme.palette.primary.main,
+                color: theme.palette.primary.main
             }
         },
 
@@ -33,12 +33,12 @@ export const useStyles = makeStyles((theme: Theme) =>
         },
 
         tooltip: {
-            maxWidth: 200,
+            maxWidth: 200
         },
 
         listItem: {
             paddingTop: theme.spacing(1.5),
-            paddingBottom: theme.spacing(1.5),
+            paddingBottom: theme.spacing(1.5)
         },
 
         listItemText: {

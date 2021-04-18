@@ -36,7 +36,7 @@ export const HeaderBar = (): JSX.Element => {
                 </IconButton>
                 <Box display="flex" flexDirection="row-reverse" flex="auto">
                     <ToggleTheme />
-                    <Box mr={1}>
+                    <Box mr={2}>
                         <ChangeLanguage />
                     </Box>
                 </Box>

@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+// Constants
+import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Components
 import { ThemeContext } from '../theme-provider/theme-provider';
 // Material-ui
@@ -15,8 +17,18 @@ export const ToggleTheme = (): JSX.Element => {
     const { theme, toggleTheme } = useContext(ThemeContext);
 
     return (
-        <Tooltip title={theme === "dark" ? "Modo claro" : "Modo escuro"} arrow>
-            <IconButton color="inherit" size="small" aria-label="Alternar tema claro/escuro" onClick={toggleTheme}>
+        <Tooltip
+            enterDelay={TOOLTIP_DELAY.HEADER_BAR}
+            enterNextDelay={TOOLTIP_DELAY.HEADER_BAR}
+            title={theme === "dark" ? "Modo claro" : "Modo escuro"}
+            arrow
+        >
+            <IconButton
+                color="inherit"
+                size="small"
+                aria-label="Alternar tema claro/escuro"
+                onClick={toggleTheme}
+            >
                 {
                     theme === "dark" ?
                         <BrightnessHigh></BrightnessHigh> :
