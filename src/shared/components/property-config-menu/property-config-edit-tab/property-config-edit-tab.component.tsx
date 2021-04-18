@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 // Constants
 import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
+// Components
+import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/reducers/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
@@ -45,14 +47,12 @@ export const PropertyConfigEditTab = (): JSX.Element => {
         <Box className={classes.configMenuContainer}>
             {/* Property config */}
             <List className={classes.list}>
-                <Box px={1.5} py={1.5}>
-                    <Box>Propriedade: {selectedAppProperty.property}</Box>
-                    <Box>Está ativado: {selectedAppProperty.isActive ? 'Sim' : 'Não'}</Box>
-                </Box>
-
-                <Divider />
-
-                <Box>Em breve...</Box>
+                <PropertyConfigItem title="Teste">
+                    <>
+                        <Box>Propriedade: {selectedAppProperty.property}</Box>
+                        <Box>Está ativado: {selectedAppProperty.isActive ? 'Sim' : 'Não'}</Box>
+                    </>
+                </PropertyConfigItem>
 
                 <Divider />
             </List>
