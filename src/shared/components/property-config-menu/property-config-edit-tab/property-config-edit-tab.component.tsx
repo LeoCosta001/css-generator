@@ -5,7 +5,7 @@ import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 // Components
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 // Models
-import { TextAppProperty, TextAppPropertyState } from '../../../models/reducers/text-app-property.model';
+import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
 // Style
 import { useStyles } from "./property-config-edit-tab.style";
@@ -55,7 +55,13 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                         <Box>Está ativado: {selectedAppProperty.isActive ? 'Sim' : 'Não'}</Box>
                     </>
                 </PropertyConfigItem>
+                <Divider />
 
+                <PropertyConfigItem title="Teste">
+                    <>
+                        <Box>{JSON.stringify(selectedAppProperty.propertySettings)}</Box>
+                    </>
+                </PropertyConfigItem>
                 <Divider />
             </List>
 

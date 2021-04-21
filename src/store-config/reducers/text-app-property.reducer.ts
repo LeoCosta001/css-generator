@@ -1,7 +1,8 @@
 // Models
 import { SelectAppPropertyAction, ToggleAppPropertyAction } from '../../shared/models/reducers/app-property-action.model';
-import { TextAppProperty, TextAppPropertyState } from '../../shared/models/reducers/text-app-property.model';
+import { TextAppProperty, TextAppPropertyState } from '../../shared/models/app/text-app-property.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
+import { getEmptyPropertyConfig } from '../../shared/models/empty-property-config.model';
 
 // Interfaces
 type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction;
@@ -27,15 +28,16 @@ const INITIAL_STATE: TextAppPropertyState = {
 export default function reducer(state: TextAppPropertyState = INITIAL_STATE, action: TextAppActions): TextAppPropertyState {
     switch (action.type) {
         case 'TOGGLE_APP_PROPERTY':
-            const toggleAppProperty = state.list.map((item: TextAppProperty) => {
-                if (item.property === action.propertyName) {
+            const toggleAppProperty = state.list.map((textProperty: TextAppProperty) => {
+                if (textProperty.property === action.propertyName) {
                     return {
-                        ...item,
-                        isActive: !item.isActive
+                        ...textProperty,
+                        isActive: !textProperty.isActive,
+                        propertySettings: { [action.propertyName]: !textProperty.isActive ? getEmptyPropertyConfig[action.propertyName] : null }
                     };
                 }
 
-                return item;
+                return textProperty;
             });
 
             return {

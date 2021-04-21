@@ -1,5 +1,6 @@
 // Models
 import { PROPERTY_NAME } from '../property-name.model';
+import { GenericAppProperty, GenericAppPropertyState } from './generic-app-property.model';
 import {
     ColorProperty,
     FontSizeProperty,
@@ -27,14 +28,10 @@ export interface TextAppPropertySettings {
     [PROPERTY_NAME.WORD_SPACING]?: WordSpacingProperty | null;
 }
 
-export interface TextAppProperty {
-    property: PROPERTY_NAME;
-    description: string;
-    isActive: boolean;
+export interface TextAppProperty extends GenericAppProperty {
     propertySettings: TextAppPropertySettings;
 }
 
-export interface TextAppPropertyState {
-    selected: PROPERTY_NAME;
+export interface TextAppPropertyState extends GenericAppPropertyState {
     list: TextAppProperty[];
 }

@@ -5,7 +5,7 @@ import { actionAppProperty } from '../../../store-config/actions/app-property.ac
 // Constants
 import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Models
-import { TextAppProperty, TextAppPropertyState } from '../../models/reducers/text-app-property.model';
+import { TextAppProperty, TextAppPropertyState } from '../../models/app/text-app-property.model';
 import { AllReducerState } from '../../models/reducers/all-reducer-state.model';
 // Style
 import { useStyles } from "./property-select-menu.style";
@@ -127,4 +127,4 @@ export const PropertySelectMenu = (): JSX.Element => {
             </div>
         </Drawer>
     );
-}
+};

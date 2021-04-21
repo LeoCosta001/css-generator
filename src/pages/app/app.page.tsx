@@ -24,4 +24,4 @@ const AppPage = (): JSX.Element => {
     );
 };
 
-export default AppPage
+export default AppPage;
