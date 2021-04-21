@@ -14,16 +14,6 @@ export const useStyles = makeStyles((theme: Theme) =>
 
         list: {
             padding: 0
-        },
-
-        toolBar: {
-            justifyContent: 'space-around'
-        },
-
-        iconHover: {
-            "&:hover": {
-                color: theme.palette.primary.main
-            }
         }
     }),
 );

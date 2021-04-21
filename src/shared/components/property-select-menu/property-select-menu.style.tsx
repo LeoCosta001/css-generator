@@ -22,6 +22,10 @@ export const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'space-between'
         },
 
+        iconButton: {
+            color: theme.palette.text.secondary
+        },
+
         iconHover: {
             "&:hover": {
                 color: theme.palette.primary.main

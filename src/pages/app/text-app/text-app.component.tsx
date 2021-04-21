@@ -1,14 +1,12 @@
-// Material-ui
-import {
-    Grid
-} from '@material-ui/core';
+// Style
+import { useStyles } from "./text-app.style";
 
 export const TextApp = (): JSX.Element => {
+    const classes = useStyles();
+
     return (
-        <>
-            <Grid item xs={12}>
-                Text App
-            </Grid>
-        </>
-    )
-}
+        <div className={classes.textApp}>
+            Lorem ipsum
+        </div>
+    );
+};

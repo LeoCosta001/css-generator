@@ -16,9 +16,9 @@ import { ThemeContext } from './shared/components/theme-provider/theme-provider'
 export const history = createBrowserHistory();
 
 const App = (): JSX.Element => {
-
     const { theme } = useContext(ThemeContext);
 
+    // Edit default Material-ui style
     const materialTheme = createMuiTheme({
         typography: {
             "fontFamily": `"Open Sans", sans-serif`,
@@ -27,6 +27,7 @@ const App = (): JSX.Element => {
             "fontWeightMedium": 600,
             "fontWeightBold": 700
         },
+
         palette: {
             primary: {
                 light: '#4dabf5',
@@ -34,11 +35,17 @@ const App = (): JSX.Element => {
                 dark: '#1769aa',
                 contrastText: '#fff',
             },
+
             secondary: {
                 light: '#81c784',
                 main: '#4caf50',
                 dark: '#388e3c',
             },
+
+            background: {
+                default: theme === 'light' ? '#E5E5E5' : '#303030',
+            },
+
             type: theme
         },
     }, ptBR);

@@ -41,6 +41,8 @@ export const PropertyConfigEditTab = (): JSX.Element => {
     // Effects
     useEffect(() => {
         setSelectedAppProperty(getSelectedAppProperty());
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [textAppProperty]);
 
     return (
@@ -101,4 +103,4 @@ export const PropertyConfigEditTab = (): JSX.Element => {
             </Box>
         </Box>
     );
-}
+};

@@ -48,6 +48,7 @@ export const PropertySelectMenu = (): JSX.Element => {
                 <Toolbar variant="dense" className={classes.toolBar}>
                     <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Remover todos os estilos" arrow>
                         <IconButton
+                            className={classes.iconButton}
                             classes={{ root: classes.iconHover }}
                             size="small"
                             aria-label="Remover todos os estilos"
@@ -59,6 +60,7 @@ export const PropertySelectMenu = (): JSX.Element => {
 
                     <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Estilos prontos" arrow>
                         <IconButton
+                            className={classes.iconButton}
                             classes={{ root: classes.iconHover }}
                             size="small"
                             aria-label="Estilos prontos"
@@ -70,6 +72,7 @@ export const PropertySelectMenu = (): JSX.Element => {
 
                     <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Infommações sobre as propriedades" arrow>
                         <IconButton
+                            className={classes.iconButton}
                             classes={{ root: classes.iconHover }}
                             size="small"
                             aria-label="Informações sobre as propriedades"

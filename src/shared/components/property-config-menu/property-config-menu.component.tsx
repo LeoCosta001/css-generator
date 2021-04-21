@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Components
 import { PropertyConfigEditTab } from './property-config-edit-tab/property-config-edit-tab.component';
+import { PropertyConfigHistoryTab } from './property-config-history-tab/property-config-history-tab.component';
 // Style
 import { useStyles } from "./property-config-menu.style";
 // Material-ui
@@ -38,9 +39,8 @@ export const PropertyConfigMenu = (): JSX.Element => {
             case TAB_NAME.EDIT:
                 return <PropertyConfigEditTab />
 
-
             case TAB_NAME.HISTORY:
-                return <div>Hello World!</div> // <PropertyConfigHistoryTab />
+                return <PropertyConfigHistoryTab />
         }
     }
 
@@ -55,6 +55,7 @@ export const PropertyConfigMenu = (): JSX.Element => {
             <div className={classes.drawerContainer}>
 
                 {/* Top menu */}
+
                 <Tabs
                     value={selectedTab}
                     indicatorColor="primary"
@@ -82,9 +83,9 @@ export const PropertyConfigMenu = (): JSX.Element => {
 
                 <Divider />
 
-                {/* Configuration menu tab body */}
+                {/* Menu tab body */}
                 {selectedTabComponentRender(selectedTabName)}
             </div>
         </Drawer>
     );
-}
+};
