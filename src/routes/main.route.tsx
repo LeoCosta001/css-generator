@@ -8,7 +8,7 @@ const NotFoundPage = lazy(() => import('../pages/not-found/not-found.page'));
 
 export const Routes = (): JSX.Element => {
     return (
-        <Suspense fallback={<LinearProgress />}>
+        <Suspense fallback={<LinearProgress style={{ height: '0.6vh' }} />}>
             <Switch>
                 {/* Main page */}
                 <Route path="/app" exact component={AppPage} />

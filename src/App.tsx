@@ -4,13 +4,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { createBrowserHistory } from 'history';
 // Components
 import { FallbackErrorBoundary } from './shared/components/fallback-error-boundary/fallback-error-boundary.component';
+import { ThemeContext } from './shared/components/theme-provider/theme-provider';
 // Material-ui
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 // Routes
 import { Routes } from './routes/main.route';
-import { ThemeContext } from './shared/components/theme-provider/theme-provider';
 
 // History
 export const history = createBrowserHistory();

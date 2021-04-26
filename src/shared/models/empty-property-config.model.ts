@@ -13,10 +13,11 @@ import {
     FontWeightProperty,
     LetterSpacingProperty,
     TextShadowProperty,
-    WordSpacingProperty
+    WordSpacingProperty,
+    VALUE_TYPE
 } from './property-config.model';
 // Utils
-import { utilsPropertySyntax } from '../utils/property-syntax';
+import { utilsPropertySyntax } from '../utils/property-syntax.utils';
 
 /*************************
  * Property config empty *
@@ -42,41 +43,49 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         syntax: 'color: #000000;'
     },
     [PROPERTY_NAME.FONT_SIZE]: {
-        valueType: MEASUREMENT_UNITS.POINT,
+        measurementUnit: MEASUREMENT_UNITS.POINT,
         value: 12,
-        syntax: utilsPropertySyntax.fontSize({ value: 12, valueType: MEASUREMENT_UNITS.PIXEL })
+        predefinedValue: GLOBAL_VALUE.INITIAL,
+        valueType: VALUE_TYPE.FREE,
+        syntax: utilsPropertySyntax.fontSize({
+            value: 12,
+            measurementUnit: MEASUREMENT_UNITS.PIXEL,
+            predefinedValue: GLOBAL_VALUE.INITIAL,
+            valueType: VALUE_TYPE.FREE
+        })
     },
     [PROPERTY_NAME.FONT_FAMILY]: {
         value: ['Verdana', 'Arial', 'Helvetica', 'sans-serif'],
         syntax: 'font-family: Verdana, Arial, Helvetica, sans-serif;'
     },
     [PROPERTY_NAME.FONT_STRETCH]: {
-        value: GLOBAL_VALUE.NORMAL,
-        syntax: `${PROPERTY_NAME.FONT_STRETCH}: normal;`
+        value: GLOBAL_VALUE.INITIAL,
+        syntax: `${PROPERTY_NAME.FONT_STRETCH}: initial;`
     },
     [PROPERTY_NAME.FONT_STYLE]: {
         value: 'normal;',
-        syntax: `${PROPERTY_NAME.FONT_STYLE}: normal;`
+        syntax: `${PROPERTY_NAME.FONT_STYLE}: initial;`
     },
     [PROPERTY_NAME.FONT_VARIANT]: {
-        value: GLOBAL_VALUE.NORMAL,
-        syntax: `${PROPERTY_NAME.FONT_VARIANT}: normal;`
+        value: GLOBAL_VALUE.INITIAL,
+        syntax: `${PROPERTY_NAME.FONT_VARIANT}: initial;`
     },
     [PROPERTY_NAME.FONT_WEIGHT]: {
-        value: GLOBAL_VALUE.NORMAL,
-        syntax: `${PROPERTY_NAME.FONT_WEIGHT}: normal;`
+        value: GLOBAL_VALUE.INITIAL,
+        syntax: `${PROPERTY_NAME.FONT_WEIGHT}: initial;`
     },
     [PROPERTY_NAME.LETTER_SPACING]: {
-        valueType: MEASUREMENT_UNITS.PIXEL,
-        value: GLOBAL_VALUE.NORMAL,
-        syntax: `${PROPERTY_NAME.LETTER_SPACING}: normal;`
+        measurementUnit: MEASUREMENT_UNITS.PIXEL,
+        value: 0,
+        predefinedValue: GLOBAL_VALUE.INITIAL,
+        syntax: `${PROPERTY_NAME.LETTER_SPACING}: initial;`
     },
     [PROPERTY_NAME.TEXT_SHADOW]: {
         value: [
             {
-                positionX: { value: 2, valueType: MEASUREMENT_UNITS.PIXEL },
-                positionY: { value: 2, valueType: MEASUREMENT_UNITS.PIXEL },
-                blurRadius: { value: 2, valueType: MEASUREMENT_UNITS.PIXEL },
+                positionX: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
+                positionY: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
+                blurRadius: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
                 color: {
                     valueType: COLOR_VALUE_TYPE.HEXADECIMAL,
                     value: '#d3d3d3'
@@ -86,8 +95,9 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         syntax: `${PROPERTY_NAME.TEXT_SHADOW}: 2px 2px 2px #d3d3d3;`
     },
     [PROPERTY_NAME.WORD_SPACING]: {
-        valueType: MEASUREMENT_UNITS.PIXEL,
-        value: GLOBAL_VALUE.NORMAL,
-        syntax: `${PROPERTY_NAME.LETTER_SPACING}: normal;`
+        measurementUnit: MEASUREMENT_UNITS.PIXEL,
+        value: 0,
+        predefinedValue: GLOBAL_VALUE.INITIAL,
+        syntax: `${PROPERTY_NAME.WORD_SPACING}: initial;`
     }
 };

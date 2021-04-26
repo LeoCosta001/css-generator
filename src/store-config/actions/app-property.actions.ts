@@ -1,6 +1,8 @@
-import { PROPERTY_NAME } from '../../shared/models/property-name.model';
-import { SelectAppPropertyAction, ToggleAppPropertyAction } from '../../shared/models/reducers/app-property-action.model';
 import { store } from '../store';
+// Models
+import { AllPropertySettings } from '../../shared/models/property-config.model';
+import { PROPERTY_NAME } from '../../shared/models/property-name.model';
+import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/reducers/app-property-action.model';
 
 export const actionAppProperty = {
     toggleAppProperty: (propertyName: PROPERTY_NAME) => {
@@ -12,4 +14,9 @@ export const actionAppProperty = {
         const selectAppPropertyAction: SelectAppPropertyAction = { type: 'SELECT_APP_PROPERTY', propertyName };
         store.dispatch(selectAppPropertyAction);
     },
+
+    updateAppPropertySettings: (propertyName: PROPERTY_NAME, newSettings: AllPropertySettings) => {
+        const updateAppPropertySettingsAction: UpdateAppPropertySettings = { type: 'UPDATE_APP_PROPERTY_SETTINGS', data: { propertyName, newSettings } };
+        store.dispatch(updateAppPropertySettingsAction);
+    }
 };

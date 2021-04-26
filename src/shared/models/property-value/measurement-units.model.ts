@@ -15,3 +15,5 @@ export enum MEASUREMENT_UNITS {
     VIEWPORT_MAX = 'vmax',
     VIEWPORT_WIDTH = 'vw'
 }
+
+export const measurementUnitsList = Object.values(MEASUREMENT_UNITS);

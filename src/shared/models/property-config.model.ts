@@ -2,20 +2,44 @@
 import { MEASUREMENT_UNITS } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
+import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
+import { RELATIVE_SIZE } from './property-value/relative-size.model';
 
 /**************************
  * Property config simple *
  **************************/
 
 export interface SimpleColorValue {
-    valueType: COLOR_VALUE_TYPE;
+    valueType: COLOR_VALUE_TYPE | null;
     value: string;
 }
 
 export interface SimpleNumberValue {
-    valueType: MEASUREMENT_UNITS;
-    value: number | GLOBAL_VALUE;
+    measurementUnit: MEASUREMENT_UNITS;
+    value: number;
 }
+
+export enum VALUE_TYPE {
+    FREE,
+    PREDEFINED
+}
+
+/************************
+ * Property config list *
+ ************************/
+
+export type AllPropertySettings =
+    | ColorProperty
+    | FontSizeProperty
+    | FontFamilyProperty
+    | FontStretchProperty
+    | FontStyleProperty
+    | FontVariantProperty
+    | FontWeightProperty
+    | LetterSpacingProperty
+    | TextShadowProperty
+    | WordSpacingProperty
+    | ColorPropertySyntax;
 
 /*************************
  * Property config model *
@@ -29,7 +53,11 @@ export interface ColorProperty extends SimpleColorValue {
 export type ColorPropertySyntax = Omit<ColorProperty, 'syntax'>;
 
 // font-size
-export interface FontSizeProperty extends SimpleNumberValue {
+export interface FontSizeProperty {
+    measurementUnit: MEASUREMENT_UNITS;
+    value: number;
+    predefinedValue: GLOBAL_VALUE | RELATIVE_SIZE | ABSOLUTE_SIZE;
+    valueType: VALUE_TYPE;
     syntax: string;
 }
 
@@ -82,6 +110,9 @@ export interface FontWeightProperty {
 
 // letter-spacing
 export interface LetterSpacingProperty extends SimpleNumberValue {
+    measurementUnit: MEASUREMENT_UNITS;
+    value: number;
+    predefinedValue: GLOBAL_VALUE;
     syntax: string;
 }
 
@@ -98,6 +129,9 @@ export interface TextShadowProperty {
 }
 
 // word-spacing
-export interface WordSpacingProperty extends SimpleNumberValue {
+export interface WordSpacingProperty {
+    measurementUnit: MEASUREMENT_UNITS;
+    value: number;
+    predefinedValue: GLOBAL_VALUE;
     syntax: string;
 }
