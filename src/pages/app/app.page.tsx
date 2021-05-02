@@ -3,7 +3,7 @@ import { LoggedArea } from '../../shared/components/logged-area/logged-area.comp
 import { PropertyConfigMenu } from '../../shared/components/property-config-menu/property-config-menu.component';
 import { PropertySelectMenu } from '../../shared/components/property-select-menu/property-select-menu.component';
 import { AppView } from './app-view/app-view.component';
-import { AppViewMenu } from '../../shared/components/app-view-menu/app-view-menu.component';
+import { AppViewMenu } from './app-view-menu/app-view-menu.component';
 // Material-ui
 import {
     Box,

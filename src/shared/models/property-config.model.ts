@@ -38,8 +38,7 @@ export type AllPropertySettings =
     | FontWeightProperty
     | LetterSpacingProperty
     | TextShadowProperty
-    | WordSpacingProperty
-    | ColorPropertySyntax;
+    | WordSpacingProperty;
 
 /*************************
  * Property config model *

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
 export const FallbackErrorBoundary = (): JSX.Element => {
@@ -12,7 +11,7 @@ export const FallbackErrorBoundary = (): JSX.Element => {
             <DialogTitle id="alert-dialog-title">{"Infelizmente ocorreu um erro inesperado"}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Por favor, recarregue a página e começar novamente!
+                    Por favor, recarregue a página tente novamente!
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

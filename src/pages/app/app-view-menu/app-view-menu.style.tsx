@@ -1,5 +1,5 @@
 // Constants
-import { appResultHeight } from '../../constants/layout.constant';
+import { appResultHeight } from '../../../shared/constants/layout.constant';
 // Material-ui
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 

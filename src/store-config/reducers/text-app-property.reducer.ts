@@ -64,6 +64,7 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
                 ...state,
                 list: toggleAppProperty
             };
+
         case 'SELECT_APP_PROPERTY':
             return { ...state, selected: action.propertyName };
 

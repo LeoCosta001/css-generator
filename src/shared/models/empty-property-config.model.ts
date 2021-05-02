@@ -49,7 +49,7 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         valueType: VALUE_TYPE.FREE,
         syntax: utilsPropertySyntax.fontSize({
             value: 12,
-            measurementUnit: MEASUREMENT_UNITS.PIXEL,
+            measurementUnit: MEASUREMENT_UNITS.POINT,
             predefinedValue: GLOBAL_VALUE.INITIAL,
             valueType: VALUE_TYPE.FREE
         })

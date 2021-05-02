@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// Components
+import { CssCode } from "../../../shared/components/css-code/css-code.component";
 // Style
 import { useStyles } from "./app-view-menu.style";
 // Material-ui
@@ -26,7 +28,7 @@ export const AppViewMenu = (): JSX.Element => {
     const selectedTabComponentRender = (tabName: TAB_NAME): JSX.Element => {
         switch (tabName) {
             case TAB_NAME.RESULT_OF_CSS_CODE:
-                return <Box>color: black;</Box>
+                return <CssCode />
 
             case TAB_NAME.EDIT_APP_VIEW_TEXT:
                 return <Box>Lorem ipsum</Box>
