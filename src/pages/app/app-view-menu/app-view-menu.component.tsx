@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // Components
 import { CssCode } from "../../../shared/components/css-code/css-code.component";
+import { TextViewEdit } from "../../../shared/components/text-view-edit/text-view-edit.component";
 // Style
 import { useStyles } from "./app-view-menu.style";
 // Material-ui
@@ -31,7 +32,7 @@ export const AppViewMenu = (): JSX.Element => {
                 return <CssCode />
 
             case TAB_NAME.EDIT_APP_VIEW_TEXT:
-                return <Box>Lorem ipsum</Box>
+                return <TextViewEdit />
         }
     }
 

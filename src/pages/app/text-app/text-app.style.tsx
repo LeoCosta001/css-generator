@@ -1,10 +1,14 @@
 // Material-ui
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() =>
+export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         textApp: {
-            color: 'black'
+            color: 'black',
+            maxHeight: '100%',
+            padding: theme.spacing(2),
+            overflow: 'auto',
+            wordWrap:'break-word'
         }
     }),
 );
