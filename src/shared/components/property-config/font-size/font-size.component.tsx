@@ -83,7 +83,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
 
     // Effects
     useEffect(() => {
-        updatePropertySettings();
+        if (Object.keys(formError).length === 0) updatePropertySettings();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValue])
