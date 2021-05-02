@@ -44,11 +44,11 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     },
     [PROPERTY_NAME.FONT_SIZE]: {
         measurementUnit: MEASUREMENT_UNITS.POINT,
-        value: 12,
+        value: '12',
         predefinedValue: GLOBAL_VALUE.INITIAL,
         valueType: VALUE_TYPE.FREE,
         syntax: utilsPropertySyntax.fontSize({
-            value: 12,
+            value: '12',
             measurementUnit: MEASUREMENT_UNITS.POINT,
             predefinedValue: GLOBAL_VALUE.INITIAL,
             valueType: VALUE_TYPE.FREE
@@ -76,16 +76,16 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     },
     [PROPERTY_NAME.LETTER_SPACING]: {
         measurementUnit: MEASUREMENT_UNITS.PIXEL,
-        value: 0,
+        value: '0',
         predefinedValue: GLOBAL_VALUE.INITIAL,
         syntax: `${PROPERTY_NAME.LETTER_SPACING}: initial;`
     },
     [PROPERTY_NAME.TEXT_SHADOW]: {
         value: [
             {
-                positionX: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
-                positionY: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
-                blurRadius: { value: 2, measurementUnit: MEASUREMENT_UNITS.PIXEL },
+                positionX: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
+                positionY: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
+                blurRadius: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
                 color: {
                     valueType: COLOR_VALUE_TYPE.HEXADECIMAL,
                     value: '#d3d3d3'
@@ -96,7 +96,7 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     },
     [PROPERTY_NAME.WORD_SPACING]: {
         measurementUnit: MEASUREMENT_UNITS.PIXEL,
-        value: 0,
+        value: '0',
         predefinedValue: GLOBAL_VALUE.INITIAL,
         syntax: `${PROPERTY_NAME.WORD_SPACING}: initial;`
     }

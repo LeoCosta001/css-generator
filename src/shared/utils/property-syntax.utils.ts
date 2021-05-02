@@ -6,5 +6,11 @@ interface UtilsPropertySyntax {
 }
 
 export const utilsPropertySyntax: UtilsPropertySyntax = {
-    fontSize: (data: FontSizePropertySyntax) => `font-size: ${data.valueType === VALUE_TYPE.FREE ? `${data.value}${data.measurementUnit}` : data.predefinedValue};`
+    fontSize: (data: FontSizePropertySyntax) => {
+        return `font-size: ${
+            data.valueType === VALUE_TYPE.FREE
+            ? `${parseFloat(data.value)}${data.measurementUnit}`
+            : data.predefinedValue
+        };`
+    }
 };

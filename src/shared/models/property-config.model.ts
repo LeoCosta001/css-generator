@@ -16,7 +16,7 @@ export interface SimpleColorValue {
 
 export interface SimpleNumberValue {
     measurementUnit: MEASUREMENT_UNITS;
-    value: number;
+    value: string;
 }
 
 export enum VALUE_TYPE {
@@ -54,7 +54,7 @@ export type ColorPropertySyntax = Omit<ColorProperty, 'syntax'>;
 // font-size
 export interface FontSizeProperty {
     measurementUnit: MEASUREMENT_UNITS;
-    value: number;
+    value: string;
     predefinedValue: GLOBAL_VALUE | RELATIVE_SIZE | ABSOLUTE_SIZE;
     valueType: VALUE_TYPE;
     syntax: string;
@@ -110,7 +110,7 @@ export interface FontWeightProperty {
 // letter-spacing
 export interface LetterSpacingProperty extends SimpleNumberValue {
     measurementUnit: MEASUREMENT_UNITS;
-    value: number;
+    value: string;
     predefinedValue: GLOBAL_VALUE;
     syntax: string;
 }
@@ -130,7 +130,7 @@ export interface TextShadowProperty {
 // word-spacing
 export interface WordSpacingProperty {
     measurementUnit: MEASUREMENT_UNITS;
-    value: number;
+    value: string;
     predefinedValue: GLOBAL_VALUE;
     syntax: string;
 }
