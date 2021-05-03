@@ -2,7 +2,7 @@ import { store } from '../store';
 // Models
 import { AllPropertySettings } from '../../shared/models/property-config.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
-import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/reducers/app-property-action.model';
+import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/actions/app-property-action.model';
 
 export const actionAppProperty = {
     toggleAppProperty: (propertyName: PROPERTY_NAME) => {

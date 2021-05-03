@@ -1,6 +1,6 @@
 import { store } from '../store';
 // Models
-import { TextViewAction } from '../../shared/models/reducers/text-view.model';
+import { TextViewAction } from '../../shared/models/actions/text-view.model';
 
 export const actionTextView = {
     update: (textView: string) => {

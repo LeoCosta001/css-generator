@@ -9,11 +9,7 @@ import {
 
 export const CssCode = (): JSX.Element => {
     // Redux selectors
-    const appPropertyConfig: AllAppProperty[] = useSelector((state: AllReducerState) => {
-        return [
-            ...state.textAppProperty.list
-        ]
-    });
+    const appPropertyConfig: AllAppProperty[] = useSelector((state: AllReducerState) => [...state.textAppProperty.list]);
 
     return (
         <Box>

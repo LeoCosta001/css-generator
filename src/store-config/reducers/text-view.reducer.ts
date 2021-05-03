@@ -1,5 +1,5 @@
 // Models
-import { TextViewAction } from "../../shared/models/reducers/text-view.model";
+import { TextViewAction } from "../../shared/models/actions/text-view.model";
 
 // Initial state
 const INITIAL_STATE: string = 'Lorem ipsum';

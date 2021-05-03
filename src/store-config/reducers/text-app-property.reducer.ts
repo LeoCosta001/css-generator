@@ -1,5 +1,5 @@
 // Models
-import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/reducers/app-property-action.model';
+import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/actions/app-property-action.model';
 import { TextAppProperty, TextAppPropertyState } from '../../shared/models/app/text-app-property.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
 import { getEmptyPropertyConfig } from '../../shared/models/empty-property-config.model';
