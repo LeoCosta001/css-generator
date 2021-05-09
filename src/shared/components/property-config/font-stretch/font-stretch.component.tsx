@@ -5,14 +5,13 @@ import { PropertyConfigItem } from "../../property-config-menu/property-config-i
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
 // Models
-import { FontSizeProperty, VALUE_TYPE } from '../../../models/property-config.model';
+import { FontStretchProperty, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 import { measurementUnitsList, MEASUREMENT_UNITS } from '../../../models/property-value/measurement-units.model';
-import { absoluteSizeList, ABSOLUTE_SIZE } from '../../../models/property-value/absolute-size.model';
-import { relativeSizeList, RELATIVE_SIZE } from '../../../models/property-value/relative-size.model';
 import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/global-value.model';
+import { keywordValueList, KEYWORD_VALUE } from '../../../models/property-value/keyword-value.model';
 // Style
-import { useStyles } from "./font-size.style";
+import { useStyles } from "./font-stretch.style";
 // Material-ui
 import {
     Box,
@@ -31,14 +30,14 @@ import {
 } from '@material-ui/icons';
 
 // Interfaces
-interface FontSizeConfigProps {
-    propertySettings: FontSizeProperty;
-    updatePropertySettings: (propertyName: PROPERTY_NAME, newPropertySettings: FontSizeProperty) => void;
+interface FontStretchConfigProps {
+    propertySettings: FontStretchProperty;
+    updatePropertySettings: (propertyName: PROPERTY_NAME, newPropertySettings: FontStretchProperty) => void;
 }
 
-export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
+export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element => {
     const classes = useStyles();
-    const initialValues: FontSizeProperty = {
+    const initialValues: FontStretchProperty = {
         value: props.propertySettings.value,
         valueType: props.propertySettings.valueType,
         measurementUnit: props.propertySettings.measurementUnit,
@@ -48,14 +47,14 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
 
     // States
     const [currentValueTab, setCurrentValueTab] = useState<VALUE_TYPE>(initialValues.valueType);
-    const [formValue, setFormValue] = useState<FontSizeProperty>(initialValues);
+    const [formValue, setFormValue] = useState<FontStretchProperty>(initialValues);
     const [formError, setFormError] = useState<Record<string, string>>({});
 
     // Methods
     const updatePropertySettings = () => {
-        props.updatePropertySettings(PROPERTY_NAME.FONT_SIZE, {
+        props.updatePropertySettings(PROPERTY_NAME.FONT_STRETCH, {
             ...formValue,
-            syntax: utilsPropertySyntax.fontSize(formValue)
+            syntax: utilsPropertySyntax.fontStretch(formValue)
         });
     };
 
@@ -112,7 +111,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                 </ToggleButtonGroup>
             </Box>
 
-            <PropertyConfigItem title="Tamanho">
+            <PropertyConfigItem title="Alongamento">
                 <>
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
@@ -140,6 +139,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                                     onChange={(event) => validateFields('measurementUnit', event.target.value)}
                                     onBlur={(event) => validateFields('measurementUnit', event.target.value)}
                                     error={Boolean(formError.measurementUnit)}
+                                    disabled
                                 >
                                     {measurementUnitsList.map((measurementUnit: MEASUREMENT_UNITS) => (
                                         <MenuItem key={measurementUnit} value={measurementUnit}>{measurementUnit}</MenuItem>
@@ -166,18 +166,10 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                                 >
                                     <MenuItem value="" disabled>
                                         <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Absolutos
+                                        Palavras-chave
                                     </MenuItem>
-                                    {absoluteSizeList.map((absoluteSize: ABSOLUTE_SIZE) => (
-                                        <MenuItem key={absoluteSize} value={absoluteSize}>{absoluteSize}</MenuItem>
-                                    ))}
-
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Relativos
-                                    </MenuItem>
-                                    {relativeSizeList.map((relativeSize: RELATIVE_SIZE) => (
-                                        <MenuItem key={relativeSize} value={relativeSize}>{relativeSize}</MenuItem>
+                                    {keywordValueList.map((keywordValue: KEYWORD_VALUE) => (
+                                        <MenuItem key={keywordValue} value={keywordValue}>{keywordValue}</MenuItem>
                                     ))}
 
                                     <MenuItem value="" disabled>

@@ -7,10 +7,11 @@ import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 // Components
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
+import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
-import { AllPropertySettings, FontSizeProperty } from '../../../models/property-config.model';
+import { AllPropertySettings, FontSizeProperty, FontStretchProperty } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 // Style
 import { useStyles } from "./property-config-edit-tab.style";
@@ -52,6 +53,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                 if (selectedAppProperty.isActive) return (
                     <FontSizeConfig
                         propertySettings={(selectedAppProperty.propertySettings['font-size'] as FontSizeProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
+
+            case PROPERTY_NAME.FONT_STRETCH:
+                if (selectedAppProperty.isActive) return (
+                    <FontStretchConfig
+                        propertySettings={(selectedAppProperty.propertySettings['font-stretch'] as FontStretchProperty)}
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;

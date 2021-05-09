@@ -1,6 +1,7 @@
 // Models
 import { MEASUREMENT_UNITS } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
+import { KEYWORD_VALUE } from './property-value/keyword-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { PROPERTY_NAME } from './property-name.model';
 import {
@@ -59,8 +60,16 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         syntax: 'font-family: Verdana, Arial, Helvetica, sans-serif;'
     },
     [PROPERTY_NAME.FONT_STRETCH]: {
-        value: GLOBAL_VALUE.INITIAL,
-        syntax: `${PROPERTY_NAME.FONT_STRETCH}: initial;`
+        measurementUnit: MEASUREMENT_UNITS.PERCENT,
+        value: '100',
+        predefinedValue: KEYWORD_VALUE.NORMAL,
+        valueType: VALUE_TYPE.FREE,
+        syntax: utilsPropertySyntax.fontStretch({
+            value: '100',
+            measurementUnit: MEASUREMENT_UNITS.PERCENT,
+            predefinedValue: KEYWORD_VALUE.NORMAL,
+            valueType: VALUE_TYPE.FREE
+        })
     },
     [PROPERTY_NAME.FONT_STYLE]: {
         value: 'normal;',

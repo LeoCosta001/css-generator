@@ -4,6 +4,7 @@ import { GLOBAL_VALUE } from './property-value/global-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
 import { RELATIVE_SIZE } from './property-value/relative-size.model';
+import { KEYWORD_VALUE } from './property-value/keyword-value.model';
 
 /**************************
  * Property config simple *
@@ -70,9 +71,14 @@ export interface FontFamilyProperty {
 
 // font-stretch
 export interface FontStretchProperty {
+    measurementUnit: MEASUREMENT_UNITS.PERCENT;
     value: string;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_VALUE;
+    valueType: VALUE_TYPE;
     syntax: string;
 }
+
+export type FontStretchPropertySyntax = Omit<FontStretchProperty, 'syntax'>;
 
 // font-style
 export interface FontStyleProperty {
