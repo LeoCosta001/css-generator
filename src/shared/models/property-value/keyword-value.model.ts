@@ -1,4 +1,5 @@
-export enum KEYWORD_VALUE {
+// font-stretch
+export enum KEYWORD_FONT_STRETCH_VALUE {
     ULTRA_CONDENSED = 'ultra-condensed',
     EXTRA_CONDENSED = 'extra-condensed',
     CONDENSED = 'condensed',
@@ -10,4 +11,11 @@ export enum KEYWORD_VALUE {
     ULTRA_EXPANDED = 'ultra-expanded'
 }
 
-export const keywordValueList = Object.values(KEYWORD_VALUE);
+export const keywordFontStretchValueList = Object.values(KEYWORD_FONT_STRETCH_VALUE);
+
+// letter-spacing
+export enum KEYWORD_LETTER_SPACING_VALUE {
+    NORMAL = 'normal'
+}
+
+export const keywordLetterSpacingValueList = Object.values(KEYWORD_LETTER_SPACING_VALUE);

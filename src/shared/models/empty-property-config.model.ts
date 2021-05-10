@@ -1,7 +1,7 @@
 // Models
-import { MEASUREMENT_UNITS } from './property-value/measurement-units.model';
+import { MEASUREMENT_UNITS, MEASUREMENT_UNITS_WITHOUT_PERCENT } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
-import { KEYWORD_VALUE } from './property-value/keyword-value.model';
+import { KEYWORD_FONT_STRETCH_VALUE, KEYWORD_LETTER_SPACING_VALUE } from './property-value/keyword-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { PROPERTY_NAME } from './property-name.model';
 import {
@@ -62,12 +62,12 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     [PROPERTY_NAME.FONT_STRETCH]: {
         measurementUnit: MEASUREMENT_UNITS.PERCENT,
         value: '100',
-        predefinedValue: KEYWORD_VALUE.NORMAL,
+        predefinedValue: KEYWORD_FONT_STRETCH_VALUE.NORMAL,
         valueType: VALUE_TYPE.FREE,
         syntax: utilsPropertySyntax.fontStretch({
             value: '100',
             measurementUnit: MEASUREMENT_UNITS.PERCENT,
-            predefinedValue: KEYWORD_VALUE.NORMAL,
+            predefinedValue: KEYWORD_FONT_STRETCH_VALUE.NORMAL,
             valueType: VALUE_TYPE.FREE
         })
     },
@@ -84,10 +84,16 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         syntax: `${PROPERTY_NAME.FONT_WEIGHT}: initial;`
     },
     [PROPERTY_NAME.LETTER_SPACING]: {
-        measurementUnit: MEASUREMENT_UNITS.PIXEL,
-        value: '0',
-        predefinedValue: GLOBAL_VALUE.INITIAL,
-        syntax: `${PROPERTY_NAME.LETTER_SPACING}: initial;`
+        measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL,
+        value: '10',
+        predefinedValue: KEYWORD_LETTER_SPACING_VALUE.NORMAL,
+        valueType: VALUE_TYPE.PREDEFINED,
+        syntax: utilsPropertySyntax.letterSpacing({
+            value: '10',
+            measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL,
+            predefinedValue: KEYWORD_LETTER_SPACING_VALUE.NORMAL,
+            valueType: VALUE_TYPE.PREDEFINED
+        })
     },
     [PROPERTY_NAME.TEXT_SHADOW]: {
         value: [

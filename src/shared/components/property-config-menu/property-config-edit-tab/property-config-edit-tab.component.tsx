@@ -8,11 +8,17 @@ import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
+import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
-import { AllPropertySettings, FontSizeProperty, FontStretchProperty } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
+import {
+    AllPropertySettings,
+    FontSizeProperty,
+    FontStretchProperty,
+    LetterSpacingProperty
+} from '../../../models/property-config.model';
 // Style
 import { useStyles } from "./property-config-edit-tab.style";
 // Material-ui
@@ -61,6 +67,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                 if (selectedAppProperty.isActive) return (
                     <FontStretchConfig
                         propertySettings={(selectedAppProperty.propertySettings['font-stretch'] as FontStretchProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
+
+            case PROPERTY_NAME.LETTER_SPACING:
+                if (selectedAppProperty.isActive) return (
+                    <LetterSpacingConfig
+                        propertySettings={(selectedAppProperty.propertySettings['letter-spacing'] as LetterSpacingProperty)}
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;

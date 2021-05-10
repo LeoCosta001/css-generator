@@ -1,10 +1,13 @@
 // Models
-import { MEASUREMENT_UNITS } from './property-value/measurement-units.model';
+import { MEASUREMENT_UNITS, MEASUREMENT_UNITS_WITHOUT_PERCENT } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
 import { RELATIVE_SIZE } from './property-value/relative-size.model';
-import { KEYWORD_VALUE } from './property-value/keyword-value.model';
+import {
+    KEYWORD_FONT_STRETCH_VALUE,
+    KEYWORD_LETTER_SPACING_VALUE
+} from './property-value/keyword-value.model';
 
 /**************************
  * Property config simple *
@@ -73,7 +76,7 @@ export interface FontFamilyProperty {
 export interface FontStretchProperty {
     measurementUnit: MEASUREMENT_UNITS.PERCENT;
     value: string;
-    predefinedValue: GLOBAL_VALUE | KEYWORD_VALUE;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_FONT_STRETCH_VALUE;
     valueType: VALUE_TYPE;
     syntax: string;
 }
@@ -114,12 +117,15 @@ export interface FontWeightProperty {
 }
 
 // letter-spacing
-export interface LetterSpacingProperty extends SimpleNumberValue {
-    measurementUnit: MEASUREMENT_UNITS;
+export interface LetterSpacingProperty {
+    measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT;
     value: string;
-    predefinedValue: GLOBAL_VALUE;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_LETTER_SPACING_VALUE;
+    valueType: VALUE_TYPE;
     syntax: string;
 }
+
+export type LetterSpacingPropertySyntax = Omit<LetterSpacingProperty, 'syntax'>;
 
 // text-shadow
 export interface TextShadowValue {

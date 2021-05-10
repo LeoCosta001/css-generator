@@ -5,13 +5,13 @@ import { PropertyConfigItem } from "../../property-config-menu/property-config-i
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
 // Models
-import { FontStretchProperty, VALUE_TYPE } from '../../../models/property-config.model';
+import { LetterSpacingProperty, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
-import { measurementUnitsList, MEASUREMENT_UNITS } from '../../../models/property-value/measurement-units.model';
+import { measurementUnitsWithoutPercentList, MEASUREMENT_UNITS_WITHOUT_PERCENT } from '../../../models/property-value/measurement-units.model';
 import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/global-value.model';
-import { keywordFontStretchValueList, KEYWORD_FONT_STRETCH_VALUE } from '../../../models/property-value/keyword-value.model';
+import { keywordLetterSpacingValueList, KEYWORD_LETTER_SPACING_VALUE } from '../../../models/property-value/keyword-value.model';
 // Style
-import { useStyles } from "./font-stretch.style";
+import { useStyles } from "./letter-spacing.style";
 // Material-ui
 import {
     Box,
@@ -30,14 +30,14 @@ import {
 } from '@material-ui/icons';
 
 // Interfaces
-interface FontStretchConfigProps {
-    propertySettings: FontStretchProperty;
-    updatePropertySettings: (propertyName: PROPERTY_NAME, newPropertySettings: FontStretchProperty) => void;
+interface LetterSpacingConfigProps {
+    propertySettings: LetterSpacingProperty;
+    updatePropertySettings: (propertyName: PROPERTY_NAME, newPropertySettings: LetterSpacingProperty) => void;
 }
 
-export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element => {
+export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Element => {
     const classes = useStyles();
-    const initialValues: FontStretchProperty = {
+    const initialValues: LetterSpacingProperty = {
         value: props.propertySettings.value,
         valueType: props.propertySettings.valueType,
         measurementUnit: props.propertySettings.measurementUnit,
@@ -47,14 +47,14 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
 
     // States
     const [currentValueTab, setCurrentValueTab] = useState<VALUE_TYPE>(initialValues.valueType);
-    const [formValue, setFormValue] = useState<FontStretchProperty>(initialValues);
+    const [formValue, setFormValue] = useState<LetterSpacingProperty>(initialValues);
     const [formError, setFormError] = useState<Record<string, string>>({});
 
     // Methods
     const updatePropertySettings = () => {
-        props.updatePropertySettings(PROPERTY_NAME.FONT_STRETCH, {
+        props.updatePropertySettings(PROPERTY_NAME.LETTER_SPACING, {
             ...formValue,
-            syntax: utilsPropertySyntax.fontStretch(formValue)
+            syntax: utilsPropertySyntax.letterSpacing(formValue)
         });
     };
 
@@ -111,7 +111,7 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
                 </ToggleButtonGroup>
             </Box>
 
-            <PropertyConfigItem title="Alongamento">
+            <PropertyConfigItem title="Tamanho">
                 <>
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
@@ -139,9 +139,8 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
                                     onChange={(event) => validateFields('measurementUnit', event.target.value)}
                                     onBlur={(event) => validateFields('measurementUnit', event.target.value)}
                                     error={Boolean(formError.measurementUnit)}
-                                    disabled
                                 >
-                                    {measurementUnitsList.map((measurementUnit: MEASUREMENT_UNITS) => (
+                                    {measurementUnitsWithoutPercentList.map((measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT) => (
                                         <MenuItem key={measurementUnit} value={measurementUnit}>{measurementUnit}</MenuItem>
                                     ))}
                                 </TextField>
@@ -168,7 +167,7 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
                                         <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
                                         Palavras-chave
                                     </MenuItem>
-                                    {keywordFontStretchValueList.map((keywordValue: KEYWORD_FONT_STRETCH_VALUE) => (
+                                    {keywordLetterSpacingValueList.map((keywordValue: KEYWORD_LETTER_SPACING_VALUE) => (
                                         <MenuItem key={keywordValue} value={keywordValue}>{keywordValue}</MenuItem>
                                     ))}
 
