@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
+import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
 // Models
 import { LetterSpacingProperty, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
-import { measurementUnitsWithoutPercentList, MEASUREMENT_UNITS_WITHOUT_PERCENT } from '../../../models/property-value/measurement-units.model';
+import { measurementUnitsWithoutPercentList } from '../../../models/property-value/measurement-units.model';
 import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/global-value.model';
 import { keywordLetterSpacingValueList, KEYWORD_LETTER_SPACING_VALUE } from '../../../models/property-value/keyword-value.model';
 // Style
@@ -91,40 +92,20 @@ export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Elemen
                 setCurrentValueTab={setCurrentValueTab}
             />
 
-            <PropertyConfigItem title="Tamanho">
+            <PropertyConfigItem title="Espaçamento">
                 <>
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
                         <Grid container spacing={1}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    name="value"
-                                    type="text"
-                                    autoComplete="off"
-                                    value={formValue.value}
-                                    onChange={(event) => validateFields('value', event.target.value)}
-                                    onBlur={(event) => validateFields('value', event.target.value)}
-                                    error={Boolean(formError.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    select
-                                    name="measurementUnit"
-                                    value={formValue.measurementUnit}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={(event) => validateFields('measurementUnit', event.target.value)}
-                                    onBlur={(event) => validateFields('measurementUnit', event.target.value)}
-                                    error={Boolean(formError.measurementUnit)}
-                                >
-                                    {measurementUnitsWithoutPercentList.map((measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT) => (
-                                        <MenuItem key={measurementUnit} value={measurementUnit}>{measurementUnit}</MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
+                            <MeasurementUnitsFields
+                                value={formValue.value}
+                                valueError={Boolean(formError.value)}
+                                valueInputName="value"
+                                measurementUnit={formValue.measurementUnit}
+                                measurementUnitInputName="measurementUnit"
+                                measurementUnitsList={measurementUnitsWithoutPercentList}
+                                validateFields={validateFields}
+                            />
                         </Grid>
                     )}
 
