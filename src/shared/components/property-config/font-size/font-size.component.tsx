@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
+import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
@@ -15,17 +16,12 @@ import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/gl
 import { useStyles } from "./font-size.style";
 // Material-ui
 import {
-    Box,
     Divider,
     Grid,
     ListItemIcon,
     MenuItem,
     TextField
 } from "@material-ui/core";
-import {
-    ToggleButton,
-    ToggleButtonGroup
-} from '@material-ui/lab';
 import {
     ArrowRight as ArrowRightIcon
 } from '@material-ui/icons';
@@ -90,27 +86,11 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
 
     return (
         <form>
-            <Box pt={2} display="flex" justifyContent="center">
-                <ToggleButtonGroup
-                    exclusive
-                    value={currentValueTab}
-                    onChange={(event: React.MouseEvent<HTMLElement, MouseEvent>, value: VALUE_TYPE) => {
-                        if (value !== null) {
-                            validateFields('valueType', value);
-                            setCurrentValueTab(value);
-                        }
-                    }}
-                    aria-label="Tipo de seleção de valores"
-                    size="small"
-                >
-                    <ToggleButton value={VALUE_TYPE.FREE} aria-label="Valores explicitos">
-                        Livre
-                    </ToggleButton>
-                    <ToggleButton value={VALUE_TYPE.PREDEFINED} aria-label="Valores pré-definidos">
-                        Pré-definido
-                    </ToggleButton>
-                </ToggleButtonGroup>
-            </Box>
+            <ValueTypeButtonGroup
+                currentValueTab={currentValueTab}
+                validateFields={validateFields}
+                setCurrentValueTab={setCurrentValueTab}
+            />
 
             <PropertyConfigItem title="Tamanho">
                 <>
