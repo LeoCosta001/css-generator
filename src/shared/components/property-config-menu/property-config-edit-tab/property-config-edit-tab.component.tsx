@@ -9,6 +9,7 @@ import { PropertyConfigItem } from '../property-config-item/property-config-item
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
 import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
+import { WordSpacingConfig } from '../../property-config/word-spacing/word-spacing.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
@@ -17,7 +18,8 @@ import {
     AllPropertySettings,
     FontSizeProperty,
     FontStretchProperty,
-    LetterSpacingProperty
+    LetterSpacingProperty,
+    WordSpacingProperty
 } from '../../../models/property-config.model';
 // Style
 import { useStyles } from "./property-config-edit-tab.style";
@@ -78,6 +80,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;
+
+                case PROPERTY_NAME.WORD_SPACING:
+                    if (selectedAppProperty.isActive) return (
+                        <WordSpacingConfig
+                            propertySettings={(selectedAppProperty.propertySettings['word-spacing'] as WordSpacingProperty)}
+                            updatePropertySettings={updatePropertySettings}
+                        />);
+                    break;
 
             default:
                 return (

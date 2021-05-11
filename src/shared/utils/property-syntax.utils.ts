@@ -1,15 +1,17 @@
 // Models
 import {
+    VALUE_TYPE,
     FontSizePropertySyntax,
     FontStretchPropertySyntax,
     LetterSpacingPropertySyntax,
-    VALUE_TYPE
+    WordSpacingPropertySyntax
 } from '../models/property-config.model';
 
 interface UtilsPropertySyntax {
     fontSize: (data: FontSizePropertySyntax) => string;
     fontStretch: (data: FontStretchPropertySyntax) => string;
     letterSpacing: (data: LetterSpacingPropertySyntax) => string;
+    wordSpacing: (data: WordSpacingPropertySyntax) => string;
 }
 
 export const utilsPropertySyntax: UtilsPropertySyntax = {
@@ -31,6 +33,14 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
 
     letterSpacing: (data: LetterSpacingPropertySyntax) => {
         return `letter-spacing: ${
+            data.valueType === VALUE_TYPE.FREE
+            ? `${parseFloat(data.value)}${data.measurementUnit}`
+            : data.predefinedValue
+        };`
+    },
+
+    wordSpacing: (data: WordSpacingPropertySyntax) => {
+        return `word-spacing: ${
             data.valueType === VALUE_TYPE.FREE
             ? `${parseFloat(data.value)}${data.measurementUnit}`
             : data.predefinedValue

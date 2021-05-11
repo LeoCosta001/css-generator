@@ -6,7 +6,8 @@ import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
 import { RELATIVE_SIZE } from './property-value/relative-size.model';
 import {
     KEYWORD_FONT_STRETCH_VALUE,
-    KEYWORD_LETTER_SPACING_VALUE
+    KEYWORD_LETTER_SPACING_VALUE,
+    KEYWORD_WORD_SPACING_VALUE
 } from './property-value/keyword-value.model';
 
 /**************************
@@ -141,8 +142,11 @@ export interface TextShadowProperty {
 
 // word-spacing
 export interface WordSpacingProperty {
-    measurementUnit: MEASUREMENT_UNITS;
+    measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT;
     value: string;
-    predefinedValue: GLOBAL_VALUE;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_WORD_SPACING_VALUE;
+    valueType: VALUE_TYPE;
     syntax: string;
 }
+
+export type WordSpacingPropertySyntax = Omit<WordSpacingProperty, 'syntax'>;

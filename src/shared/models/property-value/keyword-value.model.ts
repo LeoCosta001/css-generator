@@ -19,3 +19,10 @@ export enum KEYWORD_LETTER_SPACING_VALUE {
 }
 
 export const keywordLetterSpacingValueList = Object.values(KEYWORD_LETTER_SPACING_VALUE);
+
+// word-spacing
+export enum KEYWORD_WORD_SPACING_VALUE {
+    NORMAL = 'normal'
+}
+
+export const keywordWordSpacingValueList = Object.values(KEYWORD_WORD_SPACING_VALUE);
