@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
 import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
+import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
@@ -10,21 +11,13 @@ import { filterField } from '../../../utils/check-filter-field.utils';
 import { LetterSpacingProperty, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 import { measurementUnitsWithoutPercentList } from '../../../models/property-value/measurement-units.model';
-import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/global-value.model';
-import { keywordLetterSpacingValueList, KEYWORD_LETTER_SPACING_VALUE } from '../../../models/property-value/keyword-value.model';
-// Style
-import { useStyles } from "./letter-spacing.style";
+import { globalValueList } from '../../../models/property-value/global-value.model';
+import { keywordLetterSpacingValueList } from '../../../models/property-value/keyword-value.model';
 // Material-ui
 import {
     Divider,
-    Grid,
-    ListItemIcon,
-    MenuItem,
-    TextField
+    Grid
 } from "@material-ui/core";
-import {
-    ArrowRight as ArrowRightIcon
-} from '@material-ui/icons';
 
 // Interfaces
 interface LetterSpacingConfigProps {
@@ -33,7 +26,6 @@ interface LetterSpacingConfigProps {
 }
 
 export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Element => {
-    const classes = useStyles();
     const initialValues: LetterSpacingProperty = {
         value: props.propertySettings.value,
         valueType: props.propertySettings.valueType,
@@ -112,35 +104,15 @@ export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Elemen
                     {/* Predefined values */}
                     {currentValueTab === VALUE_TYPE.PREDEFINED && (
                         <Grid container spacing={1}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    select
-                                    name="predefinedValue"
-                                    value={formValue.predefinedValue}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={(event) => validateFields('predefinedValue', event.target.value)}
-                                    onBlur={(event) => validateFields('predefinedValue', event.target.value)}
-                                    error={Boolean(formError.predefinedValue)}
-                                >
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Palavras-chave
-                                    </MenuItem>
-                                    {keywordLetterSpacingValueList.map((keywordValue: KEYWORD_LETTER_SPACING_VALUE) => (
-                                        <MenuItem key={keywordValue} value={keywordValue}>{keywordValue}</MenuItem>
-                                    ))}
-
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Globais
-                                    </MenuItem>
-                                    {globalValueList.map((globalValue: GLOBAL_VALUE) => (
-                                        <MenuItem key={globalValue} value={globalValue}>{globalValue}</MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
+                            <PredefinedValuesFields
+                                predefinedValue={formValue.predefinedValue}
+                                predefinedValueInputName="predefinedValue"
+                                predefinedValueList={[
+                                    { title: true, list: ['Palavras-chave', ...keywordLetterSpacingValueList] },
+                                    { title: true, list: ['Globais', ...globalValueList] },
+                                ]}
+                                validateFields={validateFields}
+                            />
                         </Grid>
                     )}
                 </>

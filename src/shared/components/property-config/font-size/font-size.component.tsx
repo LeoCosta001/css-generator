@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
 import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
+import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
 import { filterField } from '../../../utils/check-filter-field.utils';
@@ -10,22 +11,14 @@ import { filterField } from '../../../utils/check-filter-field.utils';
 import { FontSizeProperty, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 import { measurementUnitsList } from '../../../models/property-value/measurement-units.model';
-import { absoluteSizeList, ABSOLUTE_SIZE } from '../../../models/property-value/absolute-size.model';
-import { relativeSizeList, RELATIVE_SIZE } from '../../../models/property-value/relative-size.model';
-import { globalValueList, GLOBAL_VALUE } from '../../../models/property-value/global-value.model';
-// Style
-import { useStyles } from "./font-size.style";
+import { absoluteSizeList } from '../../../models/property-value/absolute-size.model';
+import { relativeSizeList } from '../../../models/property-value/relative-size.model';
+import { globalValueList } from '../../../models/property-value/global-value.model';
 // Material-ui
 import {
     Divider,
     Grid,
-    ListItemIcon,
-    MenuItem,
-    TextField
 } from "@material-ui/core";
-import {
-    ArrowRight as ArrowRightIcon
-} from '@material-ui/icons';
 
 // Interfaces
 interface FontSizeConfigProps {
@@ -34,7 +27,6 @@ interface FontSizeConfigProps {
 }
 
 export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
-    const classes = useStyles();
     const initialValues: FontSizeProperty = {
         value: props.propertySettings.value,
         valueType: props.propertySettings.valueType,
@@ -113,43 +105,16 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                     {/* Predefined values */}
                     {currentValueTab === VALUE_TYPE.PREDEFINED && (
                         <Grid container spacing={1}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    select
-                                    name="predefinedValue"
-                                    value={formValue.predefinedValue}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={(event) => validateFields('predefinedValue', event.target.value)}
-                                    onBlur={(event) => validateFields('predefinedValue', event.target.value)}
-                                    error={Boolean(formError.predefinedValue)}
-                                >
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Absolutos
-                                    </MenuItem>
-                                    {absoluteSizeList.map((absoluteSize: ABSOLUTE_SIZE) => (
-                                        <MenuItem key={absoluteSize} value={absoluteSize}>{absoluteSize}</MenuItem>
-                                    ))}
-
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Relativos
-                                    </MenuItem>
-                                    {relativeSizeList.map((relativeSize: RELATIVE_SIZE) => (
-                                        <MenuItem key={relativeSize} value={relativeSize}>{relativeSize}</MenuItem>
-                                    ))}
-
-                                    <MenuItem value="" disabled>
-                                        <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                        Globais
-                                    </MenuItem>
-                                    {globalValueList.map((globalValue: GLOBAL_VALUE) => (
-                                        <MenuItem key={globalValue} value={globalValue}>{globalValue}</MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
+                            <PredefinedValuesFields
+                                predefinedValue={formValue.predefinedValue}
+                                predefinedValueInputName="predefinedValue"
+                                predefinedValueList={[
+                                    { title: true, list: ['Absolutos', ...absoluteSizeList] },
+                                    { title: true, list: ['Relativos', ...relativeSizeList] },
+                                    { title: true, list: ['Globais', ...globalValueList] },
+                                ]}
+                                validateFields={validateFields}
+                            />
                         </Grid>
                     )}
                 </>
