@@ -3,9 +3,10 @@ import { MEASUREMENT_UNITS, MEASUREMENT_UNITS_WITHOUT_PERCENT } from './property
 import { GLOBAL_VALUE } from './property-value/global-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
-import { RELATIVE_SIZE } from './property-value/relative-size.model';
+import { RELATIVE_FONT_SIZE_VALUE, RELATIVE_FONT_WEIGHT_VALUE } from './property-value/relative-size.model';
 import {
     KEYWORD_FONT_STRETCH_VALUE,
+    KEYWORD_FONT_WEIGHT_VALUE,
     KEYWORD_LETTER_SPACING_VALUE,
     KEYWORD_WORD_SPACING_VALUE
 } from './property-value/keyword-value.model';
@@ -60,7 +61,7 @@ export type ColorPropertySyntax = Omit<ColorProperty, 'syntax'>;
 export interface FontSizeProperty {
     measurementUnit: MEASUREMENT_UNITS;
     value: string;
-    predefinedValue: GLOBAL_VALUE | RELATIVE_SIZE | ABSOLUTE_SIZE;
+    predefinedValue: GLOBAL_VALUE | RELATIVE_FONT_SIZE_VALUE | ABSOLUTE_SIZE;
     valueType: VALUE_TYPE;
     syntax: string;
 }
@@ -97,25 +98,13 @@ export interface FontVariantProperty {
 }
 
 // font-weight
-export enum FONT_WEIGHT_VALUE {
-    BOLD = 'bold',
-    LIGHTER = 'lighter',
-    BOLDER = 'bolder',
-    WEIGHT_100 = 100,
-    WEIGHT_200 = 200,
-    WEIGHT_300 = 300,
-    WEIGHT_400 = 400,
-    WEIGHT_500 = 500,
-    WEIGHT_600 = 600,
-    WEIGHT_700 = 700,
-    WEIGHT_800 = 800,
-    WEIGHT_900 = 900
-}
-
 export interface FontWeightProperty {
-    value: FONT_WEIGHT_VALUE | GLOBAL_VALUE;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_FONT_WEIGHT_VALUE | RELATIVE_FONT_WEIGHT_VALUE;
+    valueType: VALUE_TYPE.PREDEFINED;
     syntax: string;
 }
+
+export type FontWeightPropertySyntax = Omit<FontWeightProperty, 'syntax'>;
 
 // letter-spacing
 export interface LetterSpacingProperty {

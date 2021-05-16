@@ -1,7 +1,7 @@
 // Models
 import { MEASUREMENT_UNITS, MEASUREMENT_UNITS_WITHOUT_PERCENT } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
-import { KEYWORD_FONT_STRETCH_VALUE, KEYWORD_LETTER_SPACING_VALUE, KEYWORD_WORD_SPACING_VALUE } from './property-value/keyword-value.model';
+import { KEYWORD_FONT_STRETCH_VALUE, KEYWORD_FONT_WEIGHT_VALUE, KEYWORD_LETTER_SPACING_VALUE, KEYWORD_WORD_SPACING_VALUE } from './property-value/keyword-value.model';
 import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { PROPERTY_NAME } from './property-name.model';
 import {
@@ -80,8 +80,12 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         syntax: `${PROPERTY_NAME.FONT_VARIANT}: initial;`
     },
     [PROPERTY_NAME.FONT_WEIGHT]: {
-        value: GLOBAL_VALUE.INITIAL,
-        syntax: `${PROPERTY_NAME.FONT_WEIGHT}: initial;`
+        predefinedValue: KEYWORD_FONT_WEIGHT_VALUE.NORMAL,
+        valueType: VALUE_TYPE.PREDEFINED,
+        syntax: utilsPropertySyntax.fontWeight({
+            predefinedValue: KEYWORD_FONT_WEIGHT_VALUE.NORMAL,
+            valueType: VALUE_TYPE.PREDEFINED
+        })
     },
     [PROPERTY_NAME.LETTER_SPACING]: {
         measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL,

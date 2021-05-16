@@ -26,3 +26,11 @@ export enum KEYWORD_WORD_SPACING_VALUE {
 }
 
 export const keywordWordSpacingValueList = Object.values(KEYWORD_WORD_SPACING_VALUE);
+
+// font-weight
+export enum KEYWORD_FONT_WEIGHT_VALUE {
+    NORMAL = 'normal',
+    BOLD = 'bold'
+}
+
+export const keywordFontWeightValueList = Object.values(KEYWORD_FONT_WEIGHT_VALUE);

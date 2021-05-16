@@ -12,7 +12,7 @@ import { FontSizeProperty, VALUE_TYPE } from '../../../models/property-config.mo
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 import { measurementUnitsList } from '../../../models/property-value/measurement-units.model';
 import { absoluteSizeList } from '../../../models/property-value/absolute-size.model';
-import { relativeSizeList } from '../../../models/property-value/relative-size.model';
+import { relativeFontSizeList } from '../../../models/property-value/relative-size.model';
 import { globalValueList } from '../../../models/property-value/global-value.model';
 // Material-ui
 import {
@@ -110,7 +110,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                                 predefinedValueInputName="predefinedValue"
                                 predefinedValueList={[
                                     { title: true, list: ['Absolutos', ...absoluteSizeList] },
-                                    { title: true, list: ['Relativos', ...relativeSizeList] },
+                                    { title: true, list: ['Relativos', ...relativeFontSizeList] },
                                     { title: true, list: ['Globais', ...globalValueList] },
                                 ]}
                                 validateFields={validateFields}

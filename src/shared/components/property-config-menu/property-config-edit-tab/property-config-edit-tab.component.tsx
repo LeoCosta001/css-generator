@@ -8,6 +8,7 @@ import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
+import { FontWeightConfig } from '../../property-config/font-weight/font-weight.component';
 import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
 import { WordSpacingConfig } from '../../property-config/word-spacing/word-spacing.component';
 // Models
@@ -18,6 +19,7 @@ import {
     AllPropertySettings,
     FontSizeProperty,
     FontStretchProperty,
+    FontWeightProperty,
     LetterSpacingProperty,
     WordSpacingProperty
 } from '../../../models/property-config.model';
@@ -72,6 +74,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;
+
+                case PROPERTY_NAME.FONT_WEIGHT:
+                    if (selectedAppProperty.isActive) return (
+                        <FontWeightConfig
+                            propertySettings={(selectedAppProperty.propertySettings['font-weight'] as FontWeightProperty)}
+                            updatePropertySettings={updatePropertySettings}
+                        />);
+                    break;
 
             case PROPERTY_NAME.LETTER_SPACING:
                 if (selectedAppProperty.isActive) return (

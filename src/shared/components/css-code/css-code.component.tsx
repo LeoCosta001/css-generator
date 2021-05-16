@@ -16,7 +16,7 @@ export const CssCode = (): JSX.Element => {
             {
                 appPropertyConfig.map((appProperty: AllAppProperty) => {
                     if (appProperty.isActive) {
-                        return Object.entries(appProperty.propertySettings).map((propertySettings: any, index: number) => (
+                        return Object.entries(appProperty.propertySettings).map((propertySettings: any) => (
                             <Box key={propertySettings[0]}>{propertySettings[1].syntax}</Box>
                         ));
                     }
