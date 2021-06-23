@@ -20,7 +20,7 @@ export const ChangeLanguage = (): JSX.Element => {
             <IconButton
                 color="inherit"
                 size="small"
-                aria-label="Alternar tema claro/escuro"
+                aria-label="Alterar idioma"
                 onClick={() => alert('Em breve!')}
             >
                 <TranslateIcon />
