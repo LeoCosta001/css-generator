@@ -6,6 +6,7 @@ import { actionAppProperty } from '../../../../store-config/actions/app-property
 import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 // Components
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
+import { ColorConfig } from '../../property-config/color/color.component';
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
 import { FontWeightConfig } from '../../property-config/font-weight/font-weight.component';
@@ -17,6 +18,7 @@ import { AllReducerState } from '../../../models/reducers/all-reducer-state.mode
 import { PROPERTY_NAME } from '../../../models/property-name.model';
 import {
     AllPropertySettings,
+    ColorProperty,
     FontSizeProperty,
     FontStretchProperty,
     FontWeightProperty,
@@ -59,6 +61,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
 
     const getPropertyConfigRender = (propertyName: PROPERTY_NAME): JSX.Element => {
         switch (propertyName) {
+            case PROPERTY_NAME.COLOR:
+                if (selectedAppProperty.isActive) return (
+                    <ColorConfig
+                        propertySettings={(selectedAppProperty.propertySettings['color'] as ColorProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
+
             case PROPERTY_NAME.FONT_SIZE:
                 if (selectedAppProperty.isActive) return (
                     <FontSizeConfig
@@ -75,13 +85,13 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                     />);
                 break;
 
-                case PROPERTY_NAME.FONT_WEIGHT:
-                    if (selectedAppProperty.isActive) return (
-                        <FontWeightConfig
-                            propertySettings={(selectedAppProperty.propertySettings['font-weight'] as FontWeightProperty)}
-                            updatePropertySettings={updatePropertySettings}
-                        />);
-                    break;
+            case PROPERTY_NAME.FONT_WEIGHT:
+                if (selectedAppProperty.isActive) return (
+                    <FontWeightConfig
+                        propertySettings={(selectedAppProperty.propertySettings['font-weight'] as FontWeightProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
 
             case PROPERTY_NAME.LETTER_SPACING:
                 if (selectedAppProperty.isActive) return (
@@ -91,13 +101,13 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                     />);
                 break;
 
-                case PROPERTY_NAME.WORD_SPACING:
-                    if (selectedAppProperty.isActive) return (
-                        <WordSpacingConfig
-                            propertySettings={(selectedAppProperty.propertySettings['word-spacing'] as WordSpacingProperty)}
-                            updatePropertySettings={updatePropertySettings}
-                        />);
-                    break;
+            case PROPERTY_NAME.WORD_SPACING:
+                if (selectedAppProperty.isActive) return (
+                    <WordSpacingConfig
+                        propertySettings={(selectedAppProperty.propertySettings['word-spacing'] as WordSpacingProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
 
             default:
                 return (

@@ -1,8 +1,14 @@
 // Models
 import { MEASUREMENT_UNITS, MEASUREMENT_UNITS_WITHOUT_PERCENT } from './property-value/measurement-units.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
-import { KEYWORD_FONT_STRETCH_VALUE, KEYWORD_FONT_WEIGHT_VALUE, KEYWORD_LETTER_SPACING_VALUE, KEYWORD_WORD_SPACING_VALUE } from './property-value/keyword-value.model';
-import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
+import {
+    KEYWORD_COLOR_VALUE,
+    KEYWORD_FONT_STRETCH_VALUE,
+    KEYWORD_FONT_WEIGHT_VALUE,
+    KEYWORD_LETTER_SPACING_VALUE,
+    KEYWORD_WORD_SPACING_VALUE
+} from './property-value/keyword-value.model';
+import { COLOR_VALUE_TYPE, defaultColorValue } from './property-value/color-value-type.model';
 import { PROPERTY_NAME } from './property-name.model';
 import {
     ColorProperty,
@@ -39,9 +45,16 @@ interface EmptyPropertyConfig {
 
 export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     [PROPERTY_NAME.COLOR]: {
-        valueType: COLOR_VALUE_TYPE.HEXADECIMAL,
-        value: '#000000',
-        syntax: 'color: #000000;'
+        measurementUnit: COLOR_VALUE_TYPE.HEXADECIMAL,
+        value: defaultColorValue,
+        predefinedValue: KEYWORD_COLOR_VALUE.BLACK,
+        valueType: VALUE_TYPE.FREE,
+        syntax: utilsPropertySyntax.color({
+            measurementUnit: COLOR_VALUE_TYPE.HEXADECIMAL,
+            value: defaultColorValue,
+            predefinedValue: KEYWORD_COLOR_VALUE.BLACK,
+            valueType: VALUE_TYPE.FREE,
+        })
     },
     [PROPERTY_NAME.FONT_SIZE]: {
         measurementUnit: MEASUREMENT_UNITS.POINT,
@@ -106,8 +119,11 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
                 positionY: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
                 blurRadius: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
                 color: {
-                    valueType: COLOR_VALUE_TYPE.HEXADECIMAL,
-                    value: '#d3d3d3'
+                    measurementUnit: COLOR_VALUE_TYPE.HEXADECIMAL,
+                    value: defaultColorValue,
+                    predefinedValue: KEYWORD_COLOR_VALUE.BLACK,
+                    valueType: VALUE_TYPE.FREE,
+                    syntax: `color: ${defaultColorValue.hex};`
                 }
             }
         ],

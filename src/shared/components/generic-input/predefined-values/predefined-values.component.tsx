@@ -5,7 +5,8 @@ import {
     Grid,
     TextField,
     MenuItem,
-    ListItemIcon
+    ListItemIcon,
+    GridSize
 } from "@material-ui/core";
 import {
     ArrowRight as ArrowRightIcon
@@ -22,13 +23,14 @@ interface PredefinedValuesFieldsProps {
     predefinedValueInputName: string;
     predefinedValueList: PredefinedValueItem[]
     validateFields: (fieldName: string, value: any) => void;
+    gridSize?: GridSize;
 }
 
 export const PredefinedValuesFields = (props: PredefinedValuesFieldsProps): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <Grid item xs={12}>
+        <Grid item xs={props.gridSize ? props.gridSize : 12}>
             <TextField
                 fullWidth
                 select

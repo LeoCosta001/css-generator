@@ -5,6 +5,7 @@ import { COLOR_VALUE_TYPE } from './property-value/color-value-type.model';
 import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
 import { RELATIVE_FONT_SIZE_VALUE, RELATIVE_FONT_WEIGHT_VALUE } from './property-value/relative-size.model';
 import {
+    KEYWORD_COLOR_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
     KEYWORD_FONT_WEIGHT_VALUE,
     KEYWORD_LETTER_SPACING_VALUE,
@@ -15,14 +16,21 @@ import {
  * Property config simple *
  **************************/
 
-export interface SimpleColorValue {
-    valueType: COLOR_VALUE_TYPE | null;
-    value: string;
-}
-
 export interface SimpleNumberValue {
     measurementUnit: MEASUREMENT_UNITS;
     value: string;
+}
+
+export interface ColorTypeRGB {
+    a?: number;
+    b: number;
+    g: number;
+    r: number;
+}
+
+export interface ColorType {
+    hex: string;
+    rgb: ColorTypeRGB;
 }
 
 export enum VALUE_TYPE {
@@ -51,7 +59,11 @@ export type AllPropertySettings =
  *************************/
 
 // color
-export interface ColorProperty extends SimpleColorValue {
+export interface ColorProperty {
+    measurementUnit: COLOR_VALUE_TYPE,
+    value: ColorType;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_COLOR_VALUE;
+    valueType: VALUE_TYPE;
     syntax: string;
 }
 
@@ -122,8 +134,9 @@ export interface TextShadowValue {
     positionX: SimpleNumberValue;
     positionY: SimpleNumberValue;
     blurRadius: SimpleNumberValue | null;
-    color: SimpleColorValue | null;
+    color: ColorProperty;
 }
+
 export interface TextShadowProperty {
     value: TextShadowValue[];
     syntax: string;
