@@ -45,7 +45,7 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
     },
 
     fontWeight: (data: FontWeightPropertySyntax) => {
-        return `font-weight ${data.predefinedValue};`;
+        return `font-weight: ${data.predefinedValue};`;
     },
 
     letterSpacing: (data: LetterSpacingPropertySyntax) => {
