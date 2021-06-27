@@ -7,6 +7,7 @@ import { RELATIVE_FONT_SIZE_VALUE, RELATIVE_FONT_WEIGHT_VALUE } from './property
 import {
     KEYWORD_COLOR_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
+    KEYWORD_FONT_STYLE_VALUE,
     KEYWORD_FONT_WEIGHT_VALUE,
     KEYWORD_LETTER_SPACING_VALUE,
     KEYWORD_WORD_SPACING_VALUE
@@ -99,9 +100,12 @@ export type FontStretchPropertySyntax = Omit<FontStretchProperty, 'syntax'>;
 
 // font-style
 export interface FontStyleProperty {
-    value: string;
+    predefinedValue: GLOBAL_VALUE | KEYWORD_FONT_STYLE_VALUE;
+    valueType: VALUE_TYPE.PREDEFINED;
     syntax: string;
 }
+
+export type FontStylePropertySyntax = Omit<FontStyleProperty, 'syntax'>;
 
 // font-variant
 export interface FontVariantProperty {

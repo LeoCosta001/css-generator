@@ -8,7 +8,8 @@ import {
     FontStretchPropertySyntax,
     FontWeightPropertySyntax,
     LetterSpacingPropertySyntax,
-    WordSpacingPropertySyntax
+    WordSpacingPropertySyntax,
+    FontStylePropertySyntax
 } from '../models/property-config.model';
 import { COLOR_VALUE_TYPE } from '../models/property-value/color-value-type.model';
 
@@ -17,6 +18,7 @@ interface UtilsPropertySyntax {
     fontSize: (data: FontSizePropertySyntax) => string;
     fontStretch: (data: FontStretchPropertySyntax) => string;
     fontWeight: (data: FontWeightPropertySyntax) => string;
+    fontStyle: (data: FontStylePropertySyntax) => string;
     letterSpacing: (data: LetterSpacingPropertySyntax) => string;
     wordSpacing: (data: WordSpacingPropertySyntax) => string;
 }
@@ -46,6 +48,10 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
 
     fontWeight: (data: FontWeightPropertySyntax) => {
         return `font-weight: ${data.predefinedValue};`;
+    },
+
+    fontStyle: (data: FontStylePropertySyntax) => {
+        return `font-style: ${data.predefinedValue};`;
     },
 
     letterSpacing: (data: LetterSpacingPropertySyntax) => {

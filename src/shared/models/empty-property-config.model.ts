@@ -4,6 +4,7 @@ import { GLOBAL_VALUE } from './property-value/global-value.model';
 import {
     KEYWORD_COLOR_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
+    KEYWORD_FONT_STYLE_VALUE,
     KEYWORD_FONT_WEIGHT_VALUE,
     KEYWORD_LETTER_SPACING_VALUE,
     KEYWORD_WORD_SPACING_VALUE
@@ -85,8 +86,12 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
         })
     },
     [PROPERTY_NAME.FONT_STYLE]: {
-        value: 'normal;',
-        syntax: `${PROPERTY_NAME.FONT_STYLE}: initial;`
+        predefinedValue: KEYWORD_FONT_STYLE_VALUE.NORMAL,
+        valueType: VALUE_TYPE.PREDEFINED,
+        syntax: utilsPropertySyntax.fontStyle({
+            predefinedValue: KEYWORD_FONT_STYLE_VALUE.NORMAL,
+            valueType: VALUE_TYPE.PREDEFINED
+        })
     },
     [PROPERTY_NAME.FONT_VARIANT]: {
         value: GLOBAL_VALUE.INITIAL,

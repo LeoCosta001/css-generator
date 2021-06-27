@@ -22,7 +22,7 @@ const INITIAL_STATE: TextAppPropertyState = {
         { property: PROPERTY_NAME.FONT_STRETCH, description: 'Altera o alongamento dos caracteres', isActive: false, propertySettings: { [PROPERTY_NAME.FONT_STRETCH]: null } },
         {
             property: PROPERTY_NAME.FONT_STYLE,
-            description: 'Altera o estilo da fonte (negrito, itálico, etc...)',
+            description: 'Altera o estilo de inclinação da fonte (itálico, oblíquo, etc...)',
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_STYLE]: null }
         },

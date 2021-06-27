@@ -35,6 +35,15 @@ export enum KEYWORD_FONT_WEIGHT_VALUE {
 
 export const keywordFontWeightValueList = Object.values(KEYWORD_FONT_WEIGHT_VALUE);
 
+// font-style
+export enum KEYWORD_FONT_STYLE_VALUE {
+    NORMAL = 'normal',
+    ITALIC = 'italic',
+    OBLIQUE = 'oblique'
+}
+
+export const keywordFontStyleValueList = Object.values(KEYWORD_FONT_STYLE_VALUE);
+
 // color
 export enum KEYWORD_COLOR_VALUE {
     ALICE_BLUE = 'aliceblue',
