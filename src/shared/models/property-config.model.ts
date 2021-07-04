@@ -60,11 +60,14 @@ export type AllPropertySettings =
  *************************/
 
 // color
-export interface ColorProperty {
+export interface ColorValue {
     measurementUnit: COLOR_VALUE_TYPE,
     value: ColorType;
     predefinedValue: GLOBAL_VALUE | KEYWORD_COLOR_VALUE;
     valueType: VALUE_TYPE;
+}
+
+export interface ColorProperty extends ColorValue {
     syntax: string;
 }
 
@@ -134,17 +137,24 @@ export interface LetterSpacingProperty {
 export type LetterSpacingPropertySyntax = Omit<LetterSpacingProperty, 'syntax'>;
 
 // text-shadow
+export interface TextShadowPositionValue {
+    measurementUnit: MEASUREMENT_UNITS;
+    value: string;
+}
+
 export interface TextShadowValue {
-    positionX: SimpleNumberValue;
-    positionY: SimpleNumberValue;
-    blurRadius: SimpleNumberValue | null;
-    color: ColorProperty;
+    positionX: TextShadowPositionValue;
+    positionY: TextShadowPositionValue;
+    blurRadius: TextShadowPositionValue;
+    color: ColorValue;
 }
 
 export interface TextShadowProperty {
     value: TextShadowValue[];
     syntax: string;
 }
+
+export type TextShadowPropertySyntax = Omit<TextShadowProperty, 'syntax'>;
 
 // word-spacing
 export interface WordSpacingProperty {
