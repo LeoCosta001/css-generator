@@ -79,14 +79,14 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
 
     return (
         <form>
-            <ValueTypeButtonGroup
-                currentValueTab={currentValueTab}
-                validateFields={validateFields}
-                setCurrentValueTab={setCurrentValueTab}
-            />
-
             <PropertyConfigItem title="Tamanho">
                 <>
+                    <ValueTypeButtonGroup
+                        currentValueTab={currentValueTab}
+                        validateFields={validateFields}
+                        setCurrentValueTab={setCurrentValueTab}
+                    />
+
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
                         <Grid container spacing={1}>

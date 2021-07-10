@@ -78,14 +78,14 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
 
     return (
         <form>
-            <ValueTypeButtonGroup
-                currentValueTab={currentValueTab}
-                validateFields={validateFields}
-                setCurrentValueTab={setCurrentValueTab}
-            />
-
             <PropertyConfigItem title="Alongamento">
                 <>
+                    <ValueTypeButtonGroup
+                        currentValueTab={currentValueTab}
+                        validateFields={validateFields}
+                        setCurrentValueTab={setCurrentValueTab}
+                    />
+
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
                         <Grid container spacing={1}>

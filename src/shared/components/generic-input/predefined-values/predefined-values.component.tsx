@@ -6,7 +6,8 @@ import {
     TextField,
     MenuItem,
     ListItemIcon,
-    GridSize
+    GridSize,
+    Box
 } from "@material-ui/core";
 import {
     ArrowRight as ArrowRightIcon
@@ -14,6 +15,7 @@ import {
 
 // Interfaces
 interface PredefinedValueItem {
+    isColorList?: boolean;
     title?: boolean;
     list: string[];
 }
@@ -47,10 +49,20 @@ export const PredefinedValuesFields = (props: PredefinedValuesFieldsProps): JSX.
                             predefinedValueItem.title && index === 0 ? (
                                 <MenuItem key={predefinedValue} value="" disabled>
                                     <ListItemIcon className={classes.listItemIcon}><ArrowRightIcon fontSize="small" /></ListItemIcon>
-                                    { predefinedValue}
+                                    {predefinedValue}
                                 </MenuItem>
                             ) : (
-                                <MenuItem key={predefinedValue} value={predefinedValue}>{predefinedValue}</MenuItem>
+                                <MenuItem key={predefinedValue} value={predefinedValue}>
+                                    {predefinedValueItem.isColorList && (
+                                        <Box
+                                            mr={1}
+                                            display="inline-flex"
+                                            className={classes.colorIndicator}
+                                            style={{ backgroundColor: predefinedValue }}
+                                        />
+                                    )}
+                                    {predefinedValue}
+                                </MenuItem>
                             )
                         )
                     ))

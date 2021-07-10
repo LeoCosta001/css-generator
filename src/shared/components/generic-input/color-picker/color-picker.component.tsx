@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ColorResult, SketchPicker } from 'react-color';
 // Utils
 import { rgbColorToString } from '../../../utils/rgb-color-to-string.utils';
@@ -41,6 +41,11 @@ export const ColorPickerFields = (props: ColorPickerFieldsProps): JSX.Element =>
         props.validateFields(props.valueInputName, { hex: color.hex, rgb: { ...color.rgb } })
     };
 
+    // Effects
+    useEffect(() => {
+        setCurrentColor(props.value);
+    }, [props.value])
+
     return (
         <Grid
             item
@@ -52,10 +57,8 @@ export const ColorPickerFields = (props: ColorPickerFieldsProps): JSX.Element =>
                     className={classes.selectColorButton}
                     aria-describedby={getPopoverId(Boolean(anchorEl))}
                     onClick={handleClick}
-                    style={{
-                        backgroundColor: rgbColorToString(currentColor.rgb)
-                    }}
-                ></Box>
+                    style={{ backgroundColor: rgbColorToString(currentColor.rgb) }}
+                />
                 <Popover
                     className={classes.popover}
                     id={getPopoverId(Boolean(anchorEl))}
@@ -75,17 +78,18 @@ export const ColorPickerFields = (props: ColorPickerFieldsProps): JSX.Element =>
                         color={currentColor.rgb}
                         onChangeComplete={updateColor}
                         presetColors={[
-                            '#D0021B',
-                            '#F5A623',
-                            '#F8E71C',
-                            '#8B572A',
-                            '#7ED321',
-                            '#417505',
-                            '#BD10E0',
-                            '#9013FE',
-                            '#4A90E2',
-                            '#50E3C2',
-                            '#B8E986',
+                            '#27ae60',
+                            '#2ecc71',
+                            '#2980b9',
+                            '#3498db',
+                            '#8e44ad',
+                            '#9b59b6',
+                            '#c0392b',
+                            '#e74c3c',
+                            '#d35400',
+                            '#e67e22',
+                            '#f39c12',
+                            '#f1c40f',
                             '#000000',
                             '#4A4A4A',
                             '#9B9B9B',

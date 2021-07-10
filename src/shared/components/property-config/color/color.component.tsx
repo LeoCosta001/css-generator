@@ -56,20 +56,20 @@ export const ColorConfig = (props: ColorConfigProps): JSX.Element => {
     // Effects
     useEffect(() => {
         updatePropertySettings();
-    
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValue])
 
     return (
         <form>
-            <ValueTypeButtonGroup
-                currentValueTab={currentValueTab}
-                validateFields={validateFields}
-                setCurrentValueTab={setCurrentValueTab}
-            />
-
             <PropertyConfigItem title="Cor">
                 <>
+                    <ValueTypeButtonGroup
+                        currentValueTab={currentValueTab}
+                        validateFields={validateFields}
+                        setCurrentValueTab={setCurrentValueTab}
+                    />
+
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
                         <Grid container spacing={1}>
@@ -99,7 +99,7 @@ export const ColorConfig = (props: ColorConfigProps): JSX.Element => {
                                 predefinedValue={formValue.predefinedValue}
                                 predefinedValueInputName="predefinedValue"
                                 predefinedValueList={[
-                                    { title: true, list: ['Cores', ...keywordColorValueList] },
+                                    { title: true, list: ['Cores', ...keywordColorValueList], isColorList: true },
                                     { title: true, list: ['Globais', ...globalValueList] },
                                 ]}
                                 validateFields={validateFields}

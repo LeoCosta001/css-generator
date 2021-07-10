@@ -18,7 +18,7 @@ interface ValueTypeButtonGroupProps {
 
 export const ValueTypeButtonGroup = (props: ValueTypeButtonGroupProps): JSX.Element => {
     return (
-        <Box pt={2} display="flex" justifyContent="center">
+        <Box pb={2} display="flex">
             <ToggleButtonGroup
                 exclusive
                 value={props.currentValueTab}

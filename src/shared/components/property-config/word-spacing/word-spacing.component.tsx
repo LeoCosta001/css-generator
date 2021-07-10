@@ -78,14 +78,14 @@ export const WordSpacingConfig = (props: WordSpacingConfigProps): JSX.Element =>
 
     return (
         <form>
-            <ValueTypeButtonGroup
-                currentValueTab={currentValueTab}
-                validateFields={validateFields}
-                setCurrentValueTab={setCurrentValueTab}
-            />
-
             <PropertyConfigItem title="Espaçamento">
                 <>
+                    <ValueTypeButtonGroup
+                        currentValueTab={currentValueTab}
+                        validateFields={validateFields}
+                        setCurrentValueTab={setCurrentValueTab}
+                    />
+
                     {/* Free values */}
                     {currentValueTab === VALUE_TYPE.FREE && (
                         <Grid container spacing={1}>
