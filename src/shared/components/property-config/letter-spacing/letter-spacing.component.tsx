@@ -82,6 +82,7 @@ export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Elemen
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentValueTab}
+                        valueTypeName="valueType"
                         validateFields={validateFields}
                         setCurrentValueTab={setCurrentValueTab}
                     />

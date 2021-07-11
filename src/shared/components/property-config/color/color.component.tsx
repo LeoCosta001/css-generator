@@ -66,6 +66,7 @@ export const ColorConfig = (props: ColorConfigProps): JSX.Element => {
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentValueTab}
+                        valueTypeName="valueType"
                         validateFields={validateFields}
                         setCurrentValueTab={setCurrentValueTab}
                     />

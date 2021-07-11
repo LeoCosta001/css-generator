@@ -12,6 +12,7 @@ import {
 // Interfaces
 interface ValueTypeButtonGroupProps {
     currentValueTab: VALUE_TYPE;
+    valueTypeName: string;
     validateFields: (fieldName: string, value: any) => void;
     setCurrentValueTab: (value: React.SetStateAction<VALUE_TYPE>) => void;
 }
@@ -24,7 +25,7 @@ export const ValueTypeButtonGroup = (props: ValueTypeButtonGroupProps): JSX.Elem
                 value={props.currentValueTab}
                 onChange={(event: React.MouseEvent<HTMLElement, MouseEvent>, value: VALUE_TYPE) => {
                     if (value !== null) {
-                        props.validateFields('valueType', value);
+                        props.validateFields(props.valueTypeName, value);
                         props.setCurrentValueTab(value);
                     }
                 }}

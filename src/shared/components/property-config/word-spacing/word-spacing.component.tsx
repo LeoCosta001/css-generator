@@ -82,6 +82,7 @@ export const WordSpacingConfig = (props: WordSpacingConfigProps): JSX.Element =>
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentValueTab}
+                        valueTypeName="valueType"
                         validateFields={validateFields}
                         setCurrentValueTab={setCurrentValueTab}
                     />

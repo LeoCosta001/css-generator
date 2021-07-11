@@ -82,6 +82,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
             <PropertyConfigItem title="Tamanho">
                 <>
                     <ValueTypeButtonGroup
+                        valueTypeName="valueType"
                         currentValueTab={currentValueTab}
                         validateFields={validateFields}
                         setCurrentValueTab={setCurrentValueTab}

@@ -82,6 +82,7 @@ export const FontStretchConfig = (props: FontStretchConfigProps): JSX.Element =>
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentValueTab}
+                        valueTypeName="valueType"
                         validateFields={validateFields}
                         setCurrentValueTab={setCurrentValueTab}
                     />
