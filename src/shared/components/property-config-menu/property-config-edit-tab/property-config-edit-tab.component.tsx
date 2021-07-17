@@ -12,6 +12,7 @@ import { FontStretchConfig } from '../../property-config/font-stretch/font-stret
 import { FontWeightConfig } from '../../property-config/font-weight/font-weight.component';
 import { FontStyleConfig } from '../../property-config/font-style/font-style.component';
 import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
+import { TextShadowConfig } from '../../property-config/text-shadow/text-shadow.component';
 import { WordSpacingConfig } from '../../property-config/word-spacing/word-spacing.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
@@ -25,6 +26,7 @@ import {
     FontStyleProperty,
     FontWeightProperty,
     LetterSpacingProperty,
+    TextShadowProperty,
     WordSpacingProperty
 } from '../../../models/property-config.model';
 // Style
@@ -110,6 +112,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;
+
+                case PROPERTY_NAME.TEXT_SHADOW:
+                    if (selectedAppProperty.isActive) return (
+                        <TextShadowConfig
+                            propertySettings={(selectedAppProperty.propertySettings['text-shadow'] as TextShadowProperty)}
+                            updatePropertySettings={updatePropertySettings}
+                        />);
+                    break;
 
             case PROPERTY_NAME.WORD_SPACING:
                 if (selectedAppProperty.isActive) return (

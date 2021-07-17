@@ -138,7 +138,7 @@ export type LetterSpacingPropertySyntax = Omit<LetterSpacingProperty, 'syntax'>;
 
 // text-shadow
 export interface TextShadowPositionValue {
-    measurementUnit: MEASUREMENT_UNITS;
+    measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT;
     value: string;
 }
 

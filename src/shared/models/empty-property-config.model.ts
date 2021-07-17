@@ -31,58 +31,58 @@ import { utilsPropertySyntax } from '../utils/property-syntax.utils';
  * Empty property *
  ******************/
 
-const color: Omit<ColorProperty, 'syntax'> = {
+export const colorEmpty: Omit<ColorProperty, 'syntax'> = {
     measurementUnit: COLOR_VALUE_TYPE.HEXADECIMAL,
     value: defaultColorValue,
     predefinedValue: KEYWORD_COLOR_VALUE.BLACK,
     valueType: VALUE_TYPE.FREE
 };
 
-const fontSize: Omit<FontSizeProperty, 'syntax'> = {
+export const fontSizeEmpty: Omit<FontSizeProperty, 'syntax'> = {
     measurementUnit: MEASUREMENT_UNITS.POINT,
     value: '12',
     predefinedValue: GLOBAL_VALUE.INITIAL,
     valueType: VALUE_TYPE.FREE
 };
 
-const fontFamily: Omit<FontFamilyProperty, 'syntax'> = {
+export const fontFamilyEmpty: Omit<FontFamilyProperty, 'syntax'> = {
     value: ['Verdana', 'Arial', 'Helvetica', 'sans-serif']
 };
 
-const fontStretch: Omit<FontStretchProperty, 'syntax'> = {
+export const fontStretchEmpty: Omit<FontStretchProperty, 'syntax'> = {
     measurementUnit: MEASUREMENT_UNITS.PERCENT,
     value: '100',
     predefinedValue: KEYWORD_FONT_STRETCH_VALUE.NORMAL,
     valueType: VALUE_TYPE.FREE
 };
 
-const fontStyle: Omit<FontStyleProperty, 'syntax'> = {
+export const fontStyleEmpty: Omit<FontStyleProperty, 'syntax'> = {
     predefinedValue: KEYWORD_FONT_STYLE_VALUE.NORMAL,
     valueType: VALUE_TYPE.PREDEFINED
 };
 
-const fontVariant: Omit<FontVariantProperty, 'syntax'> = {
+export const fontVariantEmpty: Omit<FontVariantProperty, 'syntax'> = {
     value: GLOBAL_VALUE.INITIAL
 };
 
-const fontWeight: Omit<FontWeightProperty, 'syntax'> = {
+export const fontWeightEmpty: Omit<FontWeightProperty, 'syntax'> = {
     predefinedValue: KEYWORD_FONT_WEIGHT_VALUE.NORMAL,
     valueType: VALUE_TYPE.PREDEFINED
 };
 
-const letterSpacing: Omit<LetterSpacingProperty, 'syntax'> = {
+export const letterSpacingEmpty: Omit<LetterSpacingProperty, 'syntax'> = {
     measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL,
     value: '1',
     predefinedValue: KEYWORD_LETTER_SPACING_VALUE.NORMAL,
     valueType: VALUE_TYPE.PREDEFINED
 };
 
-const textShadow: Omit<TextShadowProperty, 'syntax'> = {
+export const textShadowEmpty: Omit<TextShadowProperty, 'syntax'> = {
     value: [
         {
-            positionX: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
-            positionY: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
-            blurRadius: { value: '2', measurementUnit: MEASUREMENT_UNITS.PIXEL },
+            positionX: { value: '2', measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL },
+            positionY: { value: '2', measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL },
+            blurRadius: { value: '2', measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL },
             color: {
                 measurementUnit: COLOR_VALUE_TYPE.HEXADECIMAL,
                 value: defaultColorValue,
@@ -93,7 +93,7 @@ const textShadow: Omit<TextShadowProperty, 'syntax'> = {
     ]
 };
 
-const wordSpacing = {
+export const wordSpacingEmpty = {
     measurementUnit: MEASUREMENT_UNITS_WITHOUT_PERCENT.PIXEL,
     value: '5',
     predefinedValue: KEYWORD_WORD_SPACING_VALUE.NORMAL,
@@ -119,43 +119,43 @@ interface EmptyPropertyConfig {
 
 export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     [PROPERTY_NAME.COLOR]: {
-        ...color,
-        syntax: utilsPropertySyntax.color({ ...color })
+        ...colorEmpty,
+        syntax: utilsPropertySyntax.color({ ...colorEmpty })
     },
     [PROPERTY_NAME.FONT_SIZE]: {
-        ...fontSize,
-        syntax: utilsPropertySyntax.fontSize({ ...fontSize })
+        ...fontSizeEmpty,
+        syntax: utilsPropertySyntax.fontSize({ ...fontSizeEmpty })
     },
     [PROPERTY_NAME.FONT_FAMILY]: {
-        ...fontFamily,
+        ...fontFamilyEmpty,
         syntax: `${PROPERTY_NAME.FONT_FAMILY}: Verdana, Arial, Helvetica, sans-serif;`
     },
     [PROPERTY_NAME.FONT_STRETCH]: {
-        ...fontStretch,
-        syntax: utilsPropertySyntax.fontStretch({ ...fontStretch })
+        ...fontStretchEmpty,
+        syntax: utilsPropertySyntax.fontStretch({ ...fontStretchEmpty })
     },
     [PROPERTY_NAME.FONT_STYLE]: {
-        ...fontStyle,
-        syntax: utilsPropertySyntax.fontStyle({ ...fontStyle })
+        ...fontStyleEmpty,
+        syntax: utilsPropertySyntax.fontStyle({ ...fontStyleEmpty })
     },
     [PROPERTY_NAME.FONT_VARIANT]: {
-        ...fontVariant,
+        ...fontVariantEmpty,
         syntax: `${PROPERTY_NAME.FONT_VARIANT}: initial;`
     },
     [PROPERTY_NAME.FONT_WEIGHT]: {
-        ...fontWeight,
-        syntax: utilsPropertySyntax.fontWeight({ ...fontWeight })
+        ...fontWeightEmpty,
+        syntax: utilsPropertySyntax.fontWeight({ ...fontWeightEmpty })
     },
     [PROPERTY_NAME.LETTER_SPACING]: {
-       ...letterSpacing,
-        syntax: utilsPropertySyntax.letterSpacing({ ...letterSpacing })
+       ...letterSpacingEmpty,
+        syntax: utilsPropertySyntax.letterSpacing({ ...letterSpacingEmpty })
     },
     [PROPERTY_NAME.TEXT_SHADOW]: {
-        ...textShadow,
-        syntax: utilsPropertySyntax.textShadow({ ...textShadow })
+        ...textShadowEmpty,
+        syntax: utilsPropertySyntax.textShadow({ ...textShadowEmpty })
     },
     [PROPERTY_NAME.WORD_SPACING]: {
-        ...wordSpacing,
-        syntax: utilsPropertySyntax.wordSpacing({ ...wordSpacing })
+        ...wordSpacingEmpty,
+        syntax: utilsPropertySyntax.wordSpacing({ ...wordSpacingEmpty })
     }
 };

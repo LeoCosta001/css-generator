@@ -1,0 +1,287 @@
+import { useState, useEffect } from 'react';
+// Constants
+import { textShadowEmpty } from '../../../models/empty-property-config.model';
+// Components
+import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
+import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
+import { ColorPickerFields } from '../../generic-input/color-picker/color-picker.component';
+import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
+import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
+// Utils
+import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
+// Models
+import { TextShadowProperty, TextShadowValue, VALUE_TYPE } from '../../../models/property-config.model';
+import { PROPERTY_NAME } from '../../../models/property-name.model';
+import { keywordColorValueList } from '../../../models/property-value/keyword-value.model';
+import { globalValueList } from '../../../models/property-value/global-value.model';
+import { colorValueTypeList } from '../../../models/property-value/color-value-type.model';
+import { measurementUnitsWithoutPercentList } from '../../../models/property-value/measurement-units.model';
+// Style
+import { useStyles } from './text-shadow.style';
+// Material-ui
+import {
+    Divider,
+    Grid,
+    Box,
+    Button
+} from "@material-ui/core";
+import {
+    Pagination
+} from '@material-ui/lab';
+
+// Interfaces
+interface TextShadowConfigProps {
+    propertySettings: TextShadowProperty;
+    updatePropertySettings: (propertyName: PROPERTY_NAME, newPropertySettings: TextShadowProperty) => void;
+}
+
+export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
+    const classes = useStyles();
+    const maxTextShadowTab = 7;
+    const initialValues: TextShadowProperty = {
+        value: props.propertySettings.value,
+        syntax: props.propertySettings.syntax
+    };
+
+    // States
+    const [currentTextShadowTab, setCurrentTextShadowTab] = useState<number>(1);
+    const [totalTextShadowTab, setTotalTextShadowTab] = useState<number>(initialValues.value.length);
+    const [currentColorValueTab, setCurrentColorValueTab] = useState<VALUE_TYPE>(VALUE_TYPE.FREE);
+    const [formValue, setFormValue] = useState<TextShadowProperty>(initialValues);
+
+    // Methods
+    const updatePropertySettings = () => {
+        props.updatePropertySettings(PROPERTY_NAME.TEXT_SHADOW, {
+            ...formValue,
+            syntax: utilsPropertySyntax.textShadow(formValue)
+        });
+    };
+
+    const changeTextShadowTab = (event: React.ChangeEvent<unknown>, page: number) => {
+        setCurrentTextShadowTab(page);
+        changeColorValueTab(page - 1);
+    };
+
+    const addTextShadowTab = () => {
+        if (totalTextShadowTab < maxTextShadowTab) {
+            setTotalTextShadowTab(totalTextShadowTab + 1);
+
+            setFormValue({
+                ...formValue,
+                value: [...formValue.value, ...textShadowEmpty.value]
+            });
+        }
+    };
+
+    const removeTextShadowTab = () => {
+        if (totalTextShadowTab > 1) {
+            const previewPage = totalTextShadowTab - 1;
+            const newValue = formValue.value;
+            newValue.pop();
+
+            setFormValue({
+                ...formValue,
+                value: newValue
+            });
+
+            setTotalTextShadowTab(previewPage);
+            if (currentTextShadowTab === totalTextShadowTab) {
+                setCurrentTextShadowTab(previewPage);
+                changeColorValueTab(previewPage - 1);
+            };
+        }
+    };
+
+    const changeColorValueTab = (textShadowIndex: number) => {
+        setCurrentColorValueTab(formValue.value[textShadowIndex].color.valueType);
+    };
+
+    // Form
+    const updateValue = (position: 'positionY' | 'positionX' | 'blurRadius' | 'color', fieldName: string, value: TextShadowProperty): TextShadowValue[] => {
+        return formValue.value.map((textShadowValue: TextShadowValue, index: number) => {
+            if (currentTextShadowTab - 1 === index) {
+                return {
+                    ...textShadowValue,
+                    [position]: {
+                        ...textShadowValue[position],
+                        [fieldName]: value
+                    }
+                }
+            } else {
+                return textShadowValue
+            }
+        })
+    };
+
+    const validateFields = (fieldName: string, value: any) => {
+        let newValue;
+        const fieldSelected = fieldName.split('_');
+
+        if (!fieldSelected) return;
+
+        if (fieldSelected[1] === 'color' ||
+            fieldSelected[1] === 'positionY' ||
+            fieldSelected[1] === 'positionX' ||
+            fieldSelected[1] === 'blurRadius') {
+            newValue = updateValue(fieldSelected[1], fieldSelected[0], value);
+        }
+
+        if (!newValue) return;
+
+        setFormValue({
+            ...formValue,
+            value: newValue
+        });
+    };
+
+    // Effects
+    useEffect(() => {
+        updatePropertySettings();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formValue])
+
+    return (
+        <form>
+            <PropertyConfigItem title="Selecionar sombra">
+                <>
+                    <Box pb={2} display="flex" justifyContent="space-between">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            onClick={addTextShadowTab}
+                            disabled={totalTextShadowTab === maxTextShadowTab}
+                        >
+                            Adicionar
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            onClick={removeTextShadowTab}
+                            disabled={totalTextShadowTab === 1}
+                        >
+                            Remover
+                        </Button>
+                    </Box>
+                    <Box className={classes.pagination} display="flex" justifyContent="center">
+                        <Pagination
+                            count={totalTextShadowTab}
+                            hideNextButton={true}
+                            hidePrevButton={true}
+                            page={currentTextShadowTab}
+                            onChange={changeTextShadowTab}
+                            variant="outlined"
+                            shape="rounded"
+                            size="small"
+                        />
+                    </Box>
+                </>
+            </PropertyConfigItem>
+
+            <Divider />
+
+            <PropertyConfigItem title="Cor">
+                <>
+                    <ValueTypeButtonGroup
+                        currentValueTab={currentColorValueTab}
+                        valueTypeName="valueType_color"
+                        validateFields={validateFields}
+                        setCurrentValueTab={setCurrentColorValueTab}
+                    />
+
+                    {/* Free color values */}
+                    {formValue.value[currentTextShadowTab - 1].color.valueType === VALUE_TYPE.FREE && (
+                        <Grid container spacing={1}>
+                            <ColorPickerFields
+                                value={formValue.value[currentTextShadowTab - 1].color.value}
+                                valueInputName="value_color"
+                                validateFields={validateFields}
+                                gridSize={2}
+                            />
+
+                            <PredefinedValuesFields
+                                predefinedValue={formValue.value[currentTextShadowTab - 1].color.measurementUnit}
+                                predefinedValueInputName="measurementUnit_color"
+                                predefinedValueList={[
+                                    { list: [...colorValueTypeList] }
+                                ]}
+                                validateFields={validateFields}
+                                gridSize={10}
+                            />
+                        </Grid>
+                    )}
+
+                    {/* Predefined color values */}
+                    {formValue.value[currentTextShadowTab - 1].color.valueType === VALUE_TYPE.PREDEFINED && (
+                        <Grid container spacing={1}>
+                            <PredefinedValuesFields
+                                predefinedValue={formValue.value[currentTextShadowTab - 1].color.predefinedValue}
+                                predefinedValueInputName="predefinedValue_color"
+                                predefinedValueList={[
+                                    { title: true, list: ['Cores', ...keywordColorValueList], isColorList: true },
+                                    { title: true, list: ['Globais', ...globalValueList] },
+                                ]}
+                                validateFields={validateFields}
+                            />
+                        </Grid>
+                    )}
+                </>
+            </PropertyConfigItem>
+
+            <Divider />
+
+            <PropertyConfigItem title="Posicionamento Y">
+                <Grid container spacing={1}>
+                    <MeasurementUnitsFields
+                        value={formValue.value[currentTextShadowTab - 1].positionY.value}
+                        valueError={false}
+                        // valueError={Boolean(formError.value)}
+                        valueInputName="value_positionY"
+                        measurementUnit={formValue.value[currentTextShadowTab - 1].positionY.measurementUnit}
+                        measurementUnitInputName="measurementUnit_positionY"
+                        measurementUnitsList={measurementUnitsWithoutPercentList}
+                        validateFields={validateFields}
+                    />
+                </Grid>
+            </PropertyConfigItem>
+
+            <Divider />
+
+            <PropertyConfigItem title="Posicionamento X">
+                <Grid container spacing={1}>
+                    <MeasurementUnitsFields
+                        value={formValue.value[currentTextShadowTab - 1].positionX.value}
+                        valueError={false}
+                        // valueError={Boolean(formError.value)}
+                        valueInputName="value_positionX"
+                        measurementUnit={formValue.value[currentTextShadowTab - 1].positionX.measurementUnit}
+                        measurementUnitInputName="measurementUnit_positionX"
+                        measurementUnitsList={measurementUnitsWithoutPercentList}
+                        validateFields={validateFields}
+                    />
+                </Grid>
+            </PropertyConfigItem>
+
+            <Divider />
+
+            <PropertyConfigItem title="Desfoque">
+                <Grid container spacing={1}>
+                    <MeasurementUnitsFields
+                        value={formValue.value[currentTextShadowTab - 1].blurRadius.value}
+                        valueError={false}
+                        // valueError={Boolean(formError.value)}
+                        valueInputName="value_blurRadius"
+                        measurementUnit={formValue.value[currentTextShadowTab - 1].blurRadius.measurementUnit}
+                        measurementUnitInputName="measurementUnit_blurRadius"
+                        measurementUnitsList={measurementUnitsWithoutPercentList}
+                        validateFields={validateFields}
+                    />
+                </Grid>
+            </PropertyConfigItem>
+
+            <Divider />
+        </form>
+    );
+};

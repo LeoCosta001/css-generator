@@ -5,10 +5,14 @@ export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         textApp: {
             color: 'black',
-            maxHeight: '100%',
+            height: '100%',
+            width: '100%',
             padding: theme.spacing(2),
             overflow: 'auto',
-            wordWrap:'break-word'
+            wordWrap:'break-word',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
         }
     }),
 );
