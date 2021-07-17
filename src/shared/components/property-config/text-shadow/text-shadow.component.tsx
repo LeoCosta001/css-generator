@@ -9,6 +9,7 @@ import { PredefinedValuesFields } from '../../generic-input/predefined-values/pr
 import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
+import { filterField } from '../../../utils/check-filter-field.utils';
 // Models
 import { TextShadowProperty, TextShadowValue, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
@@ -48,6 +49,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
     const [totalTextShadowTab, setTotalTextShadowTab] = useState<number>(initialValues.value.length);
     const [currentColorValueTab, setCurrentColorValueTab] = useState<VALUE_TYPE>(VALUE_TYPE.FREE);
     const [formValue, setFormValue] = useState<TextShadowProperty>(initialValues);
+    const [formError, setFormError] = useState<Record<string, string>>({});
 
     // Methods
     const updatePropertySettings = () => {
@@ -128,10 +130,32 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
         if (!newValue) return;
 
+        // Do not allow invalid values
+        checkErrors(fieldName, newValue, fieldSelected[1])
+
+        // Update form values
         setFormValue({
             ...formValue,
             value: newValue
         });
+    };
+
+    const checkErrors = (fieldName: string, newValue: any, fieldSelected: string) => {
+        let errors: Record<string, string> = {};
+
+        // Input "value"
+        if (fieldSelected === 'positionY' ||
+            fieldSelected === 'positionX' ||
+            fieldSelected === 'blurRadius') {
+            const currentTab = currentTextShadowTab - 1;
+            newValue[currentTab][fieldSelected].value = filterField.normalize.floatNumber(newValue[currentTab][fieldSelected].value, true);
+
+            if (!newValue[currentTab][fieldSelected].value || isNaN(Number(newValue[currentTab][fieldSelected].value))) errors[fieldName] = 'Valor inválido';
+            if (Number(newValue[currentTab][fieldSelected].value) < 0) errors[fieldName] = 'Insira uma valor maior ou igual a 0';
+        }
+
+        // Show errors  
+        setFormError(errors);
     };
 
     // Effects
@@ -236,8 +260,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].positionY.value}
-                        valueError={false}
-                        // valueError={Boolean(formError.value)}
+                        valueError={Boolean(formError.value_positionY)}
                         valueInputName="value_positionY"
                         measurementUnit={formValue.value[currentTextShadowTab - 1].positionY.measurementUnit}
                         measurementUnitInputName="measurementUnit_positionY"
@@ -253,8 +276,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].positionX.value}
-                        valueError={false}
-                        // valueError={Boolean(formError.value)}
+                        valueError={Boolean(formError.value_positionX)}
                         valueInputName="value_positionX"
                         measurementUnit={formValue.value[currentTextShadowTab - 1].positionX.measurementUnit}
                         measurementUnitInputName="measurementUnit_positionX"
@@ -270,8 +292,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].blurRadius.value}
-                        valueError={false}
-                        // valueError={Boolean(formError.value)}
+                        valueError={Boolean(formError.value_blurRadius)}
                         valueInputName="value_blurRadius"
                         measurementUnit={formValue.value[currentTextShadowTab - 1].blurRadius.measurementUnit}
                         measurementUnitInputName="measurementUnit_blurRadius"
