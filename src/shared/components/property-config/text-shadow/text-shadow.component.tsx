@@ -9,7 +9,7 @@ import { PredefinedValuesFields } from '../../generic-input/predefined-values/pr
 import { MeasurementUnitsFields } from '../../generic-input/measurement-units/measurement-units.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
-import { filterField } from '../../../utils/check-filter-field.utils';
+import { InputCheck, inputCheck } from '../../../utils/input-check.utils';
 // Models
 import { TextShadowProperty, TextShadowValue, VALUE_TYPE } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
@@ -60,6 +60,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
     };
 
     const changeTextShadowTab = (event: React.ChangeEvent<unknown>, page: number) => {
+        setFormError({});
         setCurrentTextShadowTab(page);
         changeColorValueTab(page - 1);
     };
@@ -116,6 +117,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
     };
 
     const validateFields = (fieldName: string, value: any) => {
+        // Normalize shadow value
         let newValue;
         const fieldSelected = fieldName.split('_');
 
@@ -130,32 +132,25 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
         if (!newValue) return;
 
-        // Do not allow invalid values
-        checkErrors(fieldName, newValue, fieldSelected[1])
+        // Check errors
+        let errors: Record<string, string> = {};
+
+
+        if (fieldSelected[1] === 'positionY' ||
+            fieldSelected[1] === 'positionX' ||
+            fieldSelected[1] === 'blurRadius') {
+            const getInputCheck: InputCheck = inputCheck.measurementUnitsValue(fieldName, newValue[currentTextShadowTab - 1][fieldSelected[1]].value, true)
+            errors = getInputCheck.errors;
+            newValue[currentTextShadowTab - 1][fieldSelected[1]].value = getInputCheck.normalizedValue;
+        }
+
+        setFormError(errors);
 
         // Update form values
         setFormValue({
             ...formValue,
             value: newValue
         });
-    };
-
-    const checkErrors = (fieldName: string, newValue: any, fieldSelected: string) => {
-        let errors: Record<string, string> = {};
-
-        // Input "value"
-        if (fieldSelected === 'positionY' ||
-            fieldSelected === 'positionX' ||
-            fieldSelected === 'blurRadius') {
-            const currentTab = currentTextShadowTab - 1;
-            newValue[currentTab][fieldSelected].value = filterField.normalize.floatNumber(newValue[currentTab][fieldSelected].value, true);
-
-            if (!newValue[currentTab][fieldSelected].value || isNaN(Number(newValue[currentTab][fieldSelected].value))) errors[fieldName] = 'Valor inválido';
-            if (Number(newValue[currentTab][fieldSelected].value) < 0) errors[fieldName] = 'Insira uma valor maior ou igual a 0';
-        }
-
-        // Show errors  
-        setFormError(errors);
     };
 
     // Effects

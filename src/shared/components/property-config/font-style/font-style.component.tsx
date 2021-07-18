@@ -4,7 +4,7 @@ import { PropertyConfigItem } from "../../property-config-menu/property-config-i
 import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
 // Utils
 import { utilsPropertySyntax } from '../../../utils/property-syntax.utils';
-import { filterField } from '../../../utils/check-filter-field.utils';
+import { InputCheck, inputCheck } from '../../../utils/input-check.utils';
 // Models
 import { FontStyleProperty } from '../../../models/property-config.model';
 import { PROPERTY_NAME } from '../../../models/property-name.model';
@@ -43,17 +43,15 @@ export const FontStyleConfig = (props: FontStyleConfigProps): JSX.Element => {
 
     // Form
     const validateFields = (fieldName: string, value: any) => {
+        // Check errors  
         let errors: Record<string, string> = {};
 
-        // Input "value"
         if (fieldName === 'value') {
-            value = filterField.normalize.floatNumber(value, true);
-
-            if (!value || isNaN(Number(value))) errors[fieldName] = 'Valor inválido';
-            if (value === '0') errors[fieldName] = 'Insira uma valor maior que 0';
+            const getInputCheck: InputCheck = inputCheck.measurementUnitsValue(fieldName, value)
+            errors = getInputCheck.errors;
+            value = getInputCheck.normalizedValue;
         }
 
-        // Show errors  
         setFormError(errors);
 
         // Update form values

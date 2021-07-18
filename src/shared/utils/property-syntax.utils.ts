@@ -11,7 +11,6 @@ import {
     WordSpacingPropertySyntax,
     FontStylePropertySyntax,
     TextShadowPropertySyntax,
-    ColorValue,
     TextShadowValue
 } from '../models/property-config.model';
 import { COLOR_VALUE_TYPE } from '../models/property-value/color-value-type.model';
