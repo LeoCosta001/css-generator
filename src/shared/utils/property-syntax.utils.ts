@@ -1,5 +1,6 @@
 // Utils
 import { rgbColorToString } from './rgb-color-to-string.utils';
+import { normalizeHexColorWithAlpha } from './normalize-hex-color-with-alpha.utils';
 // Models
 import {
     VALUE_TYPE,
@@ -70,9 +71,13 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
             const blurRadius = `${parseFloat(textShadowValue.blurRadius.value)}${textShadowValue.blurRadius.measurementUnit}`;
 
             let textShadowValueSyntax = `${positionX} ${positionY} ${blurRadius} `;
+
+            if (textShadowValue.color.valueType === VALUE_TYPE.PREDEFINED) {
+                textShadowValueSyntax += `${textShadowValue.color.predefinedValue}`;
+            }
             
-            if ((textShadowValue.color.valueType === VALUE_TYPE.FREE && textShadowValue.color.measurementUnit === COLOR_VALUE_TYPE.HEXADECIMAL) || textShadowValue.color.valueType === VALUE_TYPE.PREDEFINED) {
-                textShadowValueSyntax += `${textShadowValue.color.valueType === VALUE_TYPE.FREE ? textShadowValue.color.value.hex : textShadowValue.color.predefinedValue}`;
+            if (textShadowValue.color.valueType === VALUE_TYPE.FREE && textShadowValue.color.measurementUnit === COLOR_VALUE_TYPE.HEXADECIMAL) {
+                textShadowValueSyntax += normalizeHexColorWithAlpha(textShadowValue.color.value);
             }
 
             if (textShadowValue.color.valueType === VALUE_TYPE.FREE && textShadowValue.color.measurementUnit === COLOR_VALUE_TYPE.RGB) {

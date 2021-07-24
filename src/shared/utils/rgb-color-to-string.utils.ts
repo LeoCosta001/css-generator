@@ -1,3 +1,4 @@
+// Models
 import { ColorTypeRGB } from '../models/property-config.model';
 
 /**
