@@ -7,6 +7,7 @@ import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../models/app/text-app-property.model';
 import { AllReducerState } from '../../models/reducers/all-reducer-state.model';
+import { PROPERTY_NAME } from '../../models/property-name.model';
 // Style
 import { useStyles } from "./property-select-menu.style";
 // Material-ui
@@ -33,6 +34,12 @@ export const PropertySelectMenu = (): JSX.Element => {
 
     // Redux selectors
     const textAppProperty: TextAppPropertyState = useSelector((state: AllReducerState) => state.textAppProperty);
+
+    // Methods
+    const toggleAppProperty = (propertyName: PROPERTY_NAME, isActive: boolean) => {
+        if (!isActive) actionAppProperty.selectAppProperty(propertyName);
+        actionAppProperty.toggleAppProperty(propertyName);
+    };
 
     return (
         <Drawer
@@ -112,7 +119,7 @@ export const PropertySelectMenu = (): JSX.Element => {
                                             <Switch
                                                 color="primary"
                                                 size="small"
-                                                onChange={() => actionAppProperty.toggleAppProperty(textProperty.property)}
+                                                onChange={() => toggleAppProperty(textProperty.property, textProperty.isActive)}
                                                 checked={textProperty.isActive}
                                                 inputProps={{ 'aria-labelledby': `Interrupitor de ${textProperty.description}` }}
                                             />
