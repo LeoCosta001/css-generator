@@ -44,6 +44,14 @@ export enum KEYWORD_FONT_STYLE_VALUE {
 
 export const keywordFontStyleValueList = Object.values(KEYWORD_FONT_STYLE_VALUE);
 
+// font-variant
+export enum KEYWORD_FONT_VARIANT_VALUE {
+    NORMAL = 'normal',
+    SMALL_CAPS = 'small-caps'
+}
+
+export const keywordFontVariantValueList = Object.values(KEYWORD_FONT_VARIANT_VALUE);
+
 // color
 export enum KEYWORD_COLOR_VALUE {
     ALICE_BLUE = 'aliceblue',

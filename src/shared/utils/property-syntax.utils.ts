@@ -11,6 +11,7 @@ import {
     LetterSpacingPropertySyntax,
     WordSpacingPropertySyntax,
     FontStylePropertySyntax,
+    FontVariantPropertySyntax,
     TextShadowPropertySyntax,
     TextShadowValue
 } from '../models/property-config.model';
@@ -22,6 +23,7 @@ interface UtilsPropertySyntax {
     fontStretch: (data: FontStretchPropertySyntax) => string;
     fontWeight: (data: FontWeightPropertySyntax) => string;
     fontStyle: (data: FontStylePropertySyntax) => string;
+    fontVariant: (data: FontVariantPropertySyntax) => string;
     textShadow: (data: TextShadowPropertySyntax) => string;
     letterSpacing: (data: LetterSpacingPropertySyntax) => string;
     wordSpacing: (data: WordSpacingPropertySyntax) => string;
@@ -56,6 +58,10 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
 
     fontStyle: (data: FontStylePropertySyntax) => {
         return `font-style: ${data.predefinedValue};`;
+    },
+
+    fontVariant: (data: FontVariantPropertySyntax) => {
+        return `font-variant: ${data.predefinedValue};`;
     },
 
     letterSpacing: (data: LetterSpacingPropertySyntax) => {

@@ -11,6 +11,7 @@ import { FontSizeConfig } from '../../property-config/font-size/font-size.compon
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
 import { FontWeightConfig } from '../../property-config/font-weight/font-weight.component';
 import { FontStyleConfig } from '../../property-config/font-style/font-style.component';
+import { FontVariantConfig } from '../../property-config/font-variant/font-variant.component';
 import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
 import { TextShadowConfig } from '../../property-config/text-shadow/text-shadow.component';
 import { WordSpacingConfig } from '../../property-config/word-spacing/word-spacing.component';
@@ -24,6 +25,7 @@ import {
     FontSizeProperty,
     FontStretchProperty,
     FontStyleProperty,
+    FontVariantProperty,
     FontWeightProperty,
     LetterSpacingProperty,
     TextShadowProperty,
@@ -97,13 +99,21 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                     />);
                 break;
 
-                case PROPERTY_NAME.FONT_STYLE:
-                    if (selectedAppProperty.isActive) return (
-                        <FontStyleConfig
-                            propertySettings={(selectedAppProperty.propertySettings['font-style'] as FontStyleProperty)}
-                            updatePropertySettings={updatePropertySettings}
-                        />);
-                    break;
+            case PROPERTY_NAME.FONT_STYLE:
+                if (selectedAppProperty.isActive) return (
+                    <FontStyleConfig
+                        propertySettings={(selectedAppProperty.propertySettings['font-style'] as FontStyleProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
+
+            case PROPERTY_NAME.FONT_VARIANT:
+                if (selectedAppProperty.isActive) return (
+                    <FontVariantConfig
+                        propertySettings={(selectedAppProperty.propertySettings['font-variant'] as FontVariantProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
 
             case PROPERTY_NAME.LETTER_SPACING:
                 if (selectedAppProperty.isActive) return (
@@ -113,13 +123,13 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                     />);
                 break;
 
-                case PROPERTY_NAME.TEXT_SHADOW:
-                    if (selectedAppProperty.isActive) return (
-                        <TextShadowConfig
-                            propertySettings={(selectedAppProperty.propertySettings['text-shadow'] as TextShadowProperty)}
-                            updatePropertySettings={updatePropertySettings}
-                        />);
-                    break;
+            case PROPERTY_NAME.TEXT_SHADOW:
+                if (selectedAppProperty.isActive) return (
+                    <TextShadowConfig
+                        propertySettings={(selectedAppProperty.propertySettings['text-shadow'] as TextShadowProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
 
             case PROPERTY_NAME.WORD_SPACING:
                 if (selectedAppProperty.isActive) return (

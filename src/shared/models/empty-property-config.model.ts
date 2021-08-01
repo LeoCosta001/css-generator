@@ -7,6 +7,7 @@ import {
     KEYWORD_COLOR_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
     KEYWORD_FONT_STYLE_VALUE,
+    KEYWORD_FONT_VARIANT_VALUE,
     KEYWORD_FONT_WEIGHT_VALUE,
     KEYWORD_LETTER_SPACING_VALUE,
     KEYWORD_WORD_SPACING_VALUE
@@ -62,7 +63,8 @@ export const fontStyleEmpty: Omit<FontStyleProperty, 'syntax'> = {
 };
 
 export const fontVariantEmpty: Omit<FontVariantProperty, 'syntax'> = {
-    value: GLOBAL_VALUE.INITIAL
+    predefinedValue: KEYWORD_FONT_VARIANT_VALUE.NORMAL,
+    valueType: VALUE_TYPE.PREDEFINED
 };
 
 export const fontWeightEmpty: Omit<FontWeightProperty, 'syntax'> = {
@@ -140,7 +142,7 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     },
     [PROPERTY_NAME.FONT_VARIANT]: {
         ...fontVariantEmpty,
-        syntax: `${PROPERTY_NAME.FONT_VARIANT}: initial;`
+        syntax: utilsPropertySyntax.fontVariant({ ...fontVariantEmpty })
     },
     [PROPERTY_NAME.FONT_WEIGHT]: {
         ...fontWeightEmpty,
