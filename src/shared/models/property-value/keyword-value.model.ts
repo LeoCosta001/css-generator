@@ -1,3 +1,24 @@
+// font-family
+export enum KEYWORD_FONT_FAMILY_VALUE {
+    OPEN_SANS = 'Open Sans',
+    ROBOTO = 'Roboto',
+    GREAT_VIBES = 'Great Vibes',
+    ARCHITECTS_DAUGHTER = 'Architects Daughter',
+    SACRAMENTO = 'Sacramento',
+    PARISIENNE = 'Parisienne'
+}
+
+export const keywordFontFamilyValueList = Object.values(KEYWORD_FONT_FAMILY_VALUE);
+
+// font-style
+export enum KEYWORD_FONT_STYLE_VALUE {
+    NORMAL = 'normal',
+    ITALIC = 'italic',
+    OBLIQUE = 'oblique'
+}
+
+export const keywordFontStyleValueList = Object.values(KEYWORD_FONT_STYLE_VALUE);
+
 // font-stretch
 export enum KEYWORD_FONT_STRETCH_VALUE {
     ULTRA_CONDENSED = 'ultra-condensed',
@@ -13,6 +34,22 @@ export enum KEYWORD_FONT_STRETCH_VALUE {
 
 export const keywordFontStretchValueList = Object.values(KEYWORD_FONT_STRETCH_VALUE);
 
+// font-weight
+export enum KEYWORD_FONT_WEIGHT_VALUE {
+    NORMAL = 'normal',
+    BOLD = 'bold'
+}
+
+export const keywordFontWeightValueList = Object.values(KEYWORD_FONT_WEIGHT_VALUE);
+
+// font-variant
+export enum KEYWORD_FONT_VARIANT_VALUE {
+    NORMAL = 'normal',
+    SMALL_CAPS = 'small-caps'
+}
+
+export const keywordFontVariantValueList = Object.values(KEYWORD_FONT_VARIANT_VALUE);
+
 // letter-spacing
 export enum KEYWORD_LETTER_SPACING_VALUE {
     NORMAL = 'normal'
@@ -26,31 +63,6 @@ export enum KEYWORD_WORD_SPACING_VALUE {
 }
 
 export const keywordWordSpacingValueList = Object.values(KEYWORD_WORD_SPACING_VALUE);
-
-// font-weight
-export enum KEYWORD_FONT_WEIGHT_VALUE {
-    NORMAL = 'normal',
-    BOLD = 'bold'
-}
-
-export const keywordFontWeightValueList = Object.values(KEYWORD_FONT_WEIGHT_VALUE);
-
-// font-style
-export enum KEYWORD_FONT_STYLE_VALUE {
-    NORMAL = 'normal',
-    ITALIC = 'italic',
-    OBLIQUE = 'oblique'
-}
-
-export const keywordFontStyleValueList = Object.values(KEYWORD_FONT_STYLE_VALUE);
-
-// font-variant
-export enum KEYWORD_FONT_VARIANT_VALUE {
-    NORMAL = 'normal',
-    SMALL_CAPS = 'small-caps'
-}
-
-export const keywordFontVariantValueList = Object.values(KEYWORD_FONT_VARIANT_VALUE);
 
 // color
 export enum KEYWORD_COLOR_VALUE {

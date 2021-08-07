@@ -6,6 +6,7 @@ import { ABSOLUTE_SIZE } from './property-value/absolute-size.model';
 import { RELATIVE_FONT_SIZE_VALUE, RELATIVE_FONT_WEIGHT_VALUE } from './property-value/relative-size.model';
 import {
     KEYWORD_COLOR_VALUE,
+    KEYWORD_FONT_FAMILY_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
     KEYWORD_FONT_STYLE_VALUE,
     KEYWORD_FONT_VARIANT_VALUE,
@@ -46,8 +47,8 @@ export enum VALUE_TYPE {
 
 export type AllPropertySettings =
     | ColorProperty
-    | FontSizeProperty
     | FontFamilyProperty
+    | FontSizeProperty
     | FontStretchProperty
     | FontStyleProperty
     | FontVariantProperty
@@ -87,9 +88,12 @@ export type FontSizePropertySyntax = Omit<FontSizeProperty, 'syntax'>;
 
 // font-family
 export interface FontFamilyProperty {
-    value: string[];
+    predefinedValue: KEYWORD_FONT_FAMILY_VALUE;
+    valueType: VALUE_TYPE.PREDEFINED;
     syntax: string;
 }
+
+export type FontFamilyPropertySyntax = Omit<FontFamilyProperty, 'syntax'>;
 
 // font-stretch
 export interface FontStretchProperty {

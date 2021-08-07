@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 // Components
 import { FallbackErrorBoundary } from './shared/components/fallback-error-boundary/fallback-error-boundary.component';
 import { ThemeContext } from './shared/components/theme-provider/theme-provider';
+import { FontLoader } from './shared/components/font-loader/font-loader.component';
 // Material-ui
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -52,6 +53,7 @@ const App = (): JSX.Element => {
 
     return (
         <Fragment>
+            <FontLoader />
             <ThemeProvider theme={materialTheme}>
                 <CssBaseline />
                 <ErrorBoundary FallbackComponent={FallbackErrorBoundary}>

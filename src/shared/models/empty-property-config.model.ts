@@ -5,6 +5,7 @@ import { PROPERTY_NAME } from './property-name.model';
 import { GLOBAL_VALUE } from './property-value/global-value.model';
 import {
     KEYWORD_COLOR_VALUE,
+    KEYWORD_FONT_FAMILY_VALUE,
     KEYWORD_FONT_STRETCH_VALUE,
     KEYWORD_FONT_STYLE_VALUE,
     KEYWORD_FONT_VARIANT_VALUE,
@@ -39,15 +40,16 @@ export const colorEmpty: Omit<ColorProperty, 'syntax'> = {
     valueType: VALUE_TYPE.FREE
 };
 
+export const fontFamilyEmpty: Omit<FontFamilyProperty, 'syntax'> = {
+    predefinedValue: KEYWORD_FONT_FAMILY_VALUE.OPEN_SANS,
+    valueType: VALUE_TYPE.PREDEFINED
+};
+
 export const fontSizeEmpty: Omit<FontSizeProperty, 'syntax'> = {
     measurementUnit: MEASUREMENT_UNITS.POINT,
     value: '12',
     predefinedValue: GLOBAL_VALUE.INITIAL,
     valueType: VALUE_TYPE.FREE
-};
-
-export const fontFamilyEmpty: Omit<FontFamilyProperty, 'syntax'> = {
-    value: ['Verdana', 'Arial', 'Helvetica', 'sans-serif']
 };
 
 export const fontStretchEmpty: Omit<FontStretchProperty, 'syntax'> = {
@@ -130,7 +132,7 @@ export const getEmptyPropertyConfig: EmptyPropertyConfig = {
     },
     [PROPERTY_NAME.FONT_FAMILY]: {
         ...fontFamilyEmpty,
-        syntax: `${PROPERTY_NAME.FONT_FAMILY}: Verdana, Arial, Helvetica, sans-serif;`
+        syntax: utilsPropertySyntax.fontFamily({ ...fontFamilyEmpty })
     },
     [PROPERTY_NAME.FONT_STRETCH]: {
         ...fontStretchEmpty,

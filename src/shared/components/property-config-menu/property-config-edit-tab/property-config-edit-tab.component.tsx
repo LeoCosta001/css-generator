@@ -7,6 +7,7 @@ import { TOOLTIP_DELAY } from '../../../constants/delay.constant';
 // Components
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 import { ColorConfig } from '../../property-config/color/color.component';
+import { FontFamilyConfig } from '../../property-config/font-family/font-family.component';
 import { FontSizeConfig } from '../../property-config/font-size/font-size.component';
 import { FontStretchConfig } from '../../property-config/font-stretch/font-stretch.component';
 import { FontWeightConfig } from '../../property-config/font-weight/font-weight.component';
@@ -22,6 +23,7 @@ import { PROPERTY_NAME } from '../../../models/property-name.model';
 import {
     AllPropertySettings,
     ColorProperty,
+    FontFamilyProperty,
     FontSizeProperty,
     FontStretchProperty,
     FontStyleProperty,
@@ -71,6 +73,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                 if (selectedAppProperty.isActive) return (
                     <ColorConfig
                         propertySettings={(selectedAppProperty.propertySettings['color'] as ColorProperty)}
+                        updatePropertySettings={updatePropertySettings}
+                    />);
+                break;
+
+            case PROPERTY_NAME.FONT_FAMILY:
+                if (selectedAppProperty.isActive) return (
+                    <FontFamilyConfig
+                        propertySettings={(selectedAppProperty.propertySettings['font-family'] as FontFamilyProperty)}
                         updatePropertySettings={updatePropertySettings}
                     />);
                 break;

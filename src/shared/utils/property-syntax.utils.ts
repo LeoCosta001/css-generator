@@ -5,20 +5,22 @@ import { normalizeHexColorWithAlpha } from './normalize-hex-color-with-alpha.uti
 import {
     VALUE_TYPE,
     ColorPropertySyntax,
+    FontFamilyPropertySyntax,
     FontSizePropertySyntax,
     FontStretchPropertySyntax,
     FontWeightPropertySyntax,
-    LetterSpacingPropertySyntax,
-    WordSpacingPropertySyntax,
     FontStylePropertySyntax,
     FontVariantPropertySyntax,
     TextShadowPropertySyntax,
-    TextShadowValue
+    TextShadowValue,
+    LetterSpacingPropertySyntax,
+    WordSpacingPropertySyntax,
 } from '../models/property-config.model';
 import { COLOR_VALUE_TYPE } from '../models/property-value/color-value-type.model';
 
 interface UtilsPropertySyntax {
     color: (data: ColorPropertySyntax) => string;
+    fontFamily: (data: FontFamilyPropertySyntax) => string;
     fontSize: (data: FontSizePropertySyntax) => string;
     fontStretch: (data: FontStretchPropertySyntax) => string;
     fontWeight: (data: FontWeightPropertySyntax) => string;
@@ -44,6 +46,10 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
         return `color: ${colorSyntax};`;
     },
 
+    fontFamily: (data: FontFamilyPropertySyntax) => {
+        return `font-family: ${data.predefinedValue};`;
+    },
+
     fontSize: (data: FontSizePropertySyntax) => {
         return `font-size: ${data.valueType === VALUE_TYPE.FREE ? `${parseFloat(data.value)}${data.measurementUnit}` : data.predefinedValue};`;
     },
@@ -62,10 +68,6 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
 
     fontVariant: (data: FontVariantPropertySyntax) => {
         return `font-variant: ${data.predefinedValue};`;
-    },
-
-    letterSpacing: (data: LetterSpacingPropertySyntax) => {
-        return `letter-spacing: ${data.valueType === VALUE_TYPE.FREE ? `${parseFloat(data.value)}${data.measurementUnit}` : data.predefinedValue};`;
     },
 
     textShadow: (data: TextShadowPropertySyntax) => {
@@ -94,6 +96,10 @@ export const utilsPropertySyntax: UtilsPropertySyntax = {
         });
 
         return `text-shadow: ${textShadowSyntax};`;
+    },
+
+    letterSpacing: (data: LetterSpacingPropertySyntax) => {
+        return `letter-spacing: ${data.valueType === VALUE_TYPE.FREE ? `${parseFloat(data.value)}${data.measurementUnit}` : data.predefinedValue};`;
     },
 
     wordSpacing: (data: WordSpacingPropertySyntax) => {
