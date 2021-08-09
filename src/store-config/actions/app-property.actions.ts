@@ -2,7 +2,12 @@ import { store } from '../store';
 // Models
 import { AllPropertySettings } from '../../shared/models/property-config.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
-import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/actions/app-property-action.model';
+import {
+    SelectAppPropertyAction,
+    ToggleAppPropertyAction,
+    UpdateAppPropertySettings,
+    ResetAllAppPropertyAction
+} from '../../shared/models/actions/app-property-action.model';
 
 export const actionAppProperty = {
     toggleAppProperty: (propertyName: PROPERTY_NAME) => {
@@ -17,6 +22,11 @@ export const actionAppProperty = {
 
     updateAppPropertySettings: (propertyName: PROPERTY_NAME, newSettings: AllPropertySettings) => {
         const updateAppPropertySettingsAction: UpdateAppPropertySettings = { type: 'UPDATE_APP_PROPERTY_SETTINGS', data: { propertyName, newSettings } };
+        store.dispatch(updateAppPropertySettingsAction);
+    },
+
+    resetAllAppProperty: () => {
+        const updateAppPropertySettingsAction: ResetAllAppPropertyAction = { type: 'RESET_ALL_APP_PROPERTY' };
         store.dispatch(updateAppPropertySettingsAction);
     }
 };

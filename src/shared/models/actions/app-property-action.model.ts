@@ -22,3 +22,7 @@ export interface UpdateAppPropertySettings extends Action {
     type: 'UPDATE_APP_PROPERTY_SETTINGS';
     data: UpdateAppPropertySettingsInfo;
 }
+
+export interface ResetAllAppPropertyAction extends Action {
+    type: 'RESET_ALL_APP_PROPERTY';
+}

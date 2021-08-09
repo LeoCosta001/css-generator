@@ -1,11 +1,16 @@
 // Models
-import { SelectAppPropertyAction, ToggleAppPropertyAction, UpdateAppPropertySettings } from '../../shared/models/actions/app-property-action.model';
 import { TextAppProperty, TextAppPropertyState } from '../../shared/models/app/text-app-property.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
 import { getEmptyPropertyConfig } from '../../shared/models/empty-property-config.model';
+import {
+    ResetAllAppPropertyAction,
+    SelectAppPropertyAction,
+    ToggleAppPropertyAction,
+    UpdateAppPropertySettings
+} from '../../shared/models/actions/app-property-action.model';
 
 // Interfaces
-type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings;
+type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction;
 
 // Initial state
 const INITIAL_STATE: TextAppPropertyState = {
@@ -84,6 +89,9 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
                 ...state,
                 list: updateAppPropertySettings
             };
+
+        case 'RESET_ALL_APP_PROPERTY':
+            return INITIAL_STATE;
 
         default:
             return state;
