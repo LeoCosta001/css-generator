@@ -1,3 +1,4 @@
+import moment from 'moment';
 // Models
 import { PROPERTY_NAME } from '../property-name.model';
 import { GenericAppProperty, GenericAppPropertyState } from './generic-app-property.model';
@@ -28,8 +29,14 @@ export interface TextAppPropertySettings {
     [PROPERTY_NAME.WORD_SPACING]?: WordSpacingProperty | null;
 }
 
+export interface TextAppPropertyHistory {
+    propertySyntax: string;
+    time: moment.Moment;
+}
+
 export interface TextAppProperty extends GenericAppProperty {
     propertySettings: TextAppPropertySettings;
+    propertySettingsHistory: TextAppPropertyHistory[];
 }
 
 export interface TextAppPropertyState extends GenericAppPropertyState {

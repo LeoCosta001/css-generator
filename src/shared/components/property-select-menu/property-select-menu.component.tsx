@@ -41,6 +41,10 @@ export const PropertySelectMenu = (): JSX.Element => {
     const [showRemoveAllStylesDialog, setShowRemoveAllStylesDialog] = useState<boolean>(false);
 
     // Methods
+    const selectAppProperty = (propertyName: PROPERTY_NAME) => {
+        actionAppProperty.selectAppProperty(propertyName);
+    };
+
     const toggleAppProperty = (propertyName: PROPERTY_NAME, isActive: boolean) => {
         if (!isActive) actionAppProperty.selectAppProperty(propertyName);
         actionAppProperty.toggleAppProperty(propertyName);
@@ -117,7 +121,7 @@ export const PropertySelectMenu = (): JSX.Element => {
                                             dense
                                             selected={textAppProperty.selected === textProperty.property}
                                             className={classes.listItem}
-                                            onClick={() => actionAppProperty.selectAppProperty(textProperty.property)}
+                                            onClick={() => selectAppProperty(textProperty.property)}
                                         >
                                             <ListItemText className={classes.listItemText} primary={textProperty.property} />
 
