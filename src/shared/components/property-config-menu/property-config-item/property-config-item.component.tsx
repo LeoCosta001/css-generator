@@ -11,13 +11,23 @@ interface PropertyConfigItemProps {
     children: JSX.Element;
     title?: string;
     hoverEffect?: boolean;
+    onClick?: () => void;
 }
 
 export const PropertyConfigItem = (props: PropertyConfigItemProps): JSX.Element => {
     const classes = useStyles();
 
+    // Methods
+    const onClick = () => {
+        if (props.onClick) props.onClick();
+    };
+
     return (
-        <Box px={1.5} py={1.5} className={clsx({ [classes.hoverEffect]: props.hoverEffect })}>
+        <Box
+            p={1.5}
+            className={clsx({ [classes.hoverEffect]: props.hoverEffect })}
+            onClick={onClick}
+        >
             {props.title && (
                 <Box fontWeight="fontWeightBold" mb={1}>{props.title}</Box>
             )}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+// Redux
+import { actionAppProperty } from '../../../../store-config/actions/app-property.actions';
 // Components
 import { PropertyConfigItem } from '../property-config-item/property-config-item.component';
 // Models
@@ -28,6 +30,13 @@ export const PropertyConfigHistoryTab = (): JSX.Element => {
         return appPropertyConfig.list.filter((appProperty: TextAppProperty) => appPropertyConfig.selected === appProperty.property)[0];
     };
 
+    const updatePropertySettings = (textAppPropertyHistory: TextAppPropertyHistory) => {
+        actionAppProperty.updateAppPropertySettings(selectedAppProperty.property, {
+            ...textAppPropertyHistory.propertySettings,
+            syntax: textAppPropertyHistory.propertySyntax
+        });
+    };
+
     // Effects
     useEffect(() => {
         setSelectedAppProperty(getSelectedAppProperty());
@@ -41,7 +50,11 @@ export const PropertyConfigHistoryTab = (): JSX.Element => {
             <List className={classes.list}>
                 {selectedAppProperty.propertySettingsHistory.map((textAppPropertyHistory: TextAppPropertyHistory, index: number) => (
                     <React.Fragment key={index}>
-                        <PropertyConfigItem title={textAppPropertyHistory.time.format('HH:mm:ss')} hoverEffect>
+                        <PropertyConfigItem
+                            title={textAppPropertyHistory.time.format('HH:mm:ss')}
+                            onClick={() => updatePropertySettings(textAppPropertyHistory)}
+                            hoverEffect
+                        >
                             <Box>{textAppPropertyHistory.propertySyntax}</Box>
                         </PropertyConfigItem>
 

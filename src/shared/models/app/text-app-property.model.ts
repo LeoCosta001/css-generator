@@ -3,6 +3,7 @@ import moment from 'moment';
 import { PROPERTY_NAME } from '../property-name.model';
 import { GenericAppProperty, GenericAppPropertyState } from './generic-app-property.model';
 import {
+    AllPropertySettings,
     ColorProperty,
     FontSizeProperty,
     FontFamilyProperty,
@@ -30,6 +31,8 @@ export interface TextAppPropertySettings {
 }
 
 export interface TextAppPropertyHistory {
+    propertyName: PROPERTY_NAME;
+    propertySettings: AllPropertySettings;
     propertySyntax: string;
     time: moment.Moment;
 }

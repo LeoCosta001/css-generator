@@ -123,6 +123,8 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
                         propertySettings: { [action.data.propertyName]: action.data.newSettings },
                         propertySettingsHistory: [
                             ...(textProperty.propertySettingsHistory[0]?.propertySyntax !== action.data.newSettings.syntax ? [{
+                                propertyName: action.data.propertyName,
+                                propertySettings: action.data.newSettings,
                                 propertySyntax: action.data.newSettings.syntax,
                                 time: moment()
                             }] : []),
