@@ -67,6 +67,11 @@ export const PropertyConfigEditTab = (): JSX.Element => {
         actionAppProperty.updateAppPropertySettings(propertyName, newPropertySettings)
     }
 
+    const undoChangeAppProperty = (propertyName: PROPERTY_NAME) => {
+        actionAppProperty.undoChangeAppProperty(propertyName);
+        setSelectedAppProperty(getSelectedAppProperty());
+    }
+
     const getPropertyConfigRender = (propertyName: PROPERTY_NAME): JSX.Element => {
         switch (propertyName) {
             case PROPERTY_NAME.COLOR:
@@ -204,7 +209,7 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                             color="default"
                             size="small"
                             aria-label="Desfazer a ultima alteração"
-                            onClick={() => alert('Em breve!')}
+                            onClick={() => undoChangeAppProperty(selectedAppProperty.property)}
                         >
                             <UndoIcon />
                         </IconButton>

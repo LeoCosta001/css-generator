@@ -7,22 +7,23 @@ import {
     ResetAllAppPropertyAction,
     SelectAppPropertyAction,
     ToggleAppPropertyAction,
+    UndoChangeAppPropertyAction,
     UpdateAppPropertySettings
 } from '../../shared/models/actions/app-property-action.model';
 
 // Interfaces
-type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction;
+type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction | UndoChangeAppPropertyAction;
 
 // Initial state
 const INITIAL_STATE: TextAppPropertyState = {
     selected: PROPERTY_NAME.COLOR,
     list: [
         {
-            property:PROPERTY_NAME.COLOR,
+            property: PROPERTY_NAME.COLOR,
             description: 'Altera a cor dos caracteres',
             isActive: false,
             propertySettings: { [PROPERTY_NAME.COLOR]: null },
-            propertySettingsHistory: [],
+            propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_FAMILY,
@@ -86,7 +87,7 @@ const INITIAL_STATE: TextAppPropertyState = {
             isActive: false,
             propertySettings: { [PROPERTY_NAME.WORD_SPACING]: null },
             propertySettingsHistory: []
-        },
+        }
     ]
 };
 
@@ -122,12 +123,16 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
                         ...textProperty,
                         propertySettings: { [action.data.propertyName]: action.data.newSettings },
                         propertySettingsHistory: [
-                            ...(textProperty.propertySettingsHistory[0]?.propertySyntax !== action.data.newSettings.syntax ? [{
-                                propertyName: action.data.propertyName,
-                                propertySettings: action.data.newSettings,
-                                propertySyntax: action.data.newSettings.syntax,
-                                time: moment()
-                            }] : []),
+                            ...(textProperty.propertySettingsHistory[0]?.propertySyntax !== action.data.newSettings.syntax ?
+                                [
+                                    {
+                                        propertyName: action.data.propertyName,
+                                        propertySettings: action.data.newSettings,
+                                        propertySyntax: action.data.newSettings.syntax,
+                                        time: moment()
+                                    }
+                                ]
+                            : []),
                             ...textProperty.propertySettingsHistory
                         ]
                     };
@@ -139,6 +144,28 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
             return {
                 ...state,
                 list: updateAppPropertySettings
+            };
+
+        case 'UNDO_CHANGE_APP_PROPERTY':
+            const undoChangeAppProperty = state.list.map((textProperty: TextAppProperty) => {
+                const newPropertySettingsHistory = textProperty.propertySettingsHistory.slice(1, textProperty.propertySettingsHistory.length);
+
+                if (textProperty.property === action.propertyName && newPropertySettingsHistory.length > 0) {
+                    return {
+                        ...textProperty,
+                        propertySettings: { [action.propertyName]: newPropertySettingsHistory[0].propertySettings },
+                        propertySettingsHistory: [
+                            ...newPropertySettingsHistory
+                        ]
+                    };
+                }
+
+                return textProperty;
+            });
+
+            return {
+                ...state,
+                list: undoChangeAppProperty
             };
 
         case 'RESET_ALL_APP_PROPERTY':

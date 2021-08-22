@@ -6,6 +6,7 @@ import {
     SelectAppPropertyAction,
     ToggleAppPropertyAction,
     UpdateAppPropertySettings,
+    UndoChangeAppPropertyAction,
     ResetAllAppPropertyAction
 } from '../../shared/models/actions/app-property-action.model';
 
@@ -22,6 +23,11 @@ export const actionAppProperty = {
 
     updateAppPropertySettings: (propertyName: PROPERTY_NAME, newSettings: AllPropertySettings) => {
         const updateAppPropertySettingsAction: UpdateAppPropertySettings = { type: 'UPDATE_APP_PROPERTY_SETTINGS', data: { propertyName, newSettings } };
+        store.dispatch(updateAppPropertySettingsAction);
+    },
+
+    undoChangeAppProperty: (propertyName: PROPERTY_NAME) => {
+        const updateAppPropertySettingsAction: UndoChangeAppPropertyAction = { type: 'UNDO_CHANGE_APP_PROPERTY', propertyName };
         store.dispatch(updateAppPropertySettingsAction);
     },
 

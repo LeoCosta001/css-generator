@@ -53,6 +53,12 @@ export const FontFamilyConfig = (props: FontFamilyConfigProps): JSX.Element => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValue])
 
+    useEffect(() => {
+        setFormValue(initialValues)
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.propertySettings.syntax])
+
     return (
         <form>
             <PropertyConfigItem title="Fonte">

@@ -23,6 +23,11 @@ export interface UpdateAppPropertySettings extends Action {
     data: UpdateAppPropertySettingsInfo;
 }
 
+export interface UndoChangeAppPropertyAction extends Action {
+    type: 'UNDO_CHANGE_APP_PROPERTY';
+    propertyName: PROPERTY_NAME;
+}
+
 export interface ResetAllAppPropertyAction extends Action {
     type: 'RESET_ALL_APP_PROPERTY';
 }

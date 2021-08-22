@@ -74,6 +74,13 @@ export const LetterSpacingConfig = (props: LetterSpacingConfigProps): JSX.Elemen
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValue])
 
+    useEffect(() => {
+        setCurrentValueTab(props.propertySettings.valueType)
+        setFormValue(initialValues)
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.propertySettings.syntax])
+
     return (
         <form>
             <PropertyConfigItem title="Espaçamento">
