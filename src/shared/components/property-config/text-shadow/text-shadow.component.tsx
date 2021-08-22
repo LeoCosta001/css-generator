@@ -65,6 +65,10 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
         changeColorValueTab(page - 1);
     };
 
+    const changeColorValueTab = (textShadowIndex: number) => {
+        setCurrentColorValueTab(formValue.value[textShadowIndex].color.valueType);
+    };
+
     const addTextShadowTab = () => {
         if (totalTextShadowTab < maxTextShadowTab) {
             setTotalTextShadowTab(totalTextShadowTab + 1);
@@ -93,10 +97,6 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                 changeColorValueTab(previewPage - 1);
             };
         }
-    };
-
-    const changeColorValueTab = (textShadowIndex: number) => {
-        setCurrentColorValueTab(formValue.value[textShadowIndex].color.valueType);
     };
 
     // Form
@@ -159,6 +159,19 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValue])
+
+    useEffect(() => {
+        const totalTextShadowTabQuantity = props.propertySettings.value.length;
+        const currentTabIsDeleted = currentTextShadowTab > totalTextShadowTabQuantity;
+
+        if (currentTabIsDeleted) setCurrentTextShadowTab(totalTextShadowTabQuantity);
+
+        setTotalTextShadowTab(totalTextShadowTabQuantity);
+        setFormValue(initialValues);
+        setCurrentColorValueTab(initialValues.value[currentTabIsDeleted ? totalTextShadowTabQuantity - 1 : currentTextShadowTab - 1].color.valueType);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.propertySettings.syntax])
 
     return (
         <form>
