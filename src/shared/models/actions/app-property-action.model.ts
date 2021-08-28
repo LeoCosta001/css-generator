@@ -31,3 +31,8 @@ export interface UndoChangeAppPropertyAction extends Action {
 export interface ResetAllAppPropertyAction extends Action {
     type: 'RESET_ALL_APP_PROPERTY';
 }
+
+export interface ResetAppPropertyAction extends Action {
+    type: 'RESET_APP_PROPERTY';
+    propertyName: PROPERTY_NAME;
+}

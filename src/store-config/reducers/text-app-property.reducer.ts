@@ -5,6 +5,7 @@ import { PROPERTY_NAME } from '../../shared/models/property-name.model';
 import { getEmptyPropertyConfig } from '../../shared/models/empty-property-config.model';
 import {
     ResetAllAppPropertyAction,
+    ResetAppPropertyAction,
     SelectAppPropertyAction,
     ToggleAppPropertyAction,
     UndoChangeAppPropertyAction,
@@ -12,7 +13,7 @@ import {
 } from '../../shared/models/actions/app-property-action.model';
 
 // Interfaces
-type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction | UndoChangeAppPropertyAction;
+type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction | ResetAppPropertyAction | UndoChangeAppPropertyAction;
 
 // Initial state
 const INITIAL_STATE: TextAppPropertyState = {
@@ -170,6 +171,26 @@ export default function reducer(state: TextAppPropertyState = INITIAL_STATE, act
 
         case 'RESET_ALL_APP_PROPERTY':
             return INITIAL_STATE;
+
+        case 'RESET_APP_PROPERTY':
+            const resetAppProperty = state.list.map((textProperty: TextAppProperty) => {
+                if (textProperty.property === action.propertyName) {
+                    return {
+                        ...textProperty,
+                        propertySettings: { [action.propertyName]: textProperty.propertySettingsHistory[textProperty.propertySettingsHistory.length - 1].propertySettings },
+                        propertySettingsHistory: [
+                            textProperty.propertySettingsHistory[textProperty.propertySettingsHistory.length - 1]
+                        ]
+                    };
+                }
+
+                return textProperty;
+            });
+
+            return {
+                ...state,
+                list: resetAppProperty
+            };
 
         default:
             return state;

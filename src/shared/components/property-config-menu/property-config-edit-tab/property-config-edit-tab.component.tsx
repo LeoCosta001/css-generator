@@ -16,6 +16,7 @@ import { FontVariantConfig } from '../../property-config/font-variant/font-varia
 import { LetterSpacingConfig } from '../../property-config/letter-spacing/letter-spacing.component';
 import { TextShadowConfig } from '../../property-config/text-shadow/text-shadow.component';
 import { WordSpacingConfig } from '../../property-config/word-spacing/word-spacing.component';
+import { GenericDialog } from '../../generic-dialog/generic-dialog.component';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../../models/app/text-app-property.model';
 import { AllReducerState } from '../../../models/reducers/all-reducer-state.model';
@@ -57,6 +58,7 @@ export const PropertyConfigEditTab = (): JSX.Element => {
 
     // States 
     const [selectedAppProperty, setSelectedAppProperty] = useState<TextAppProperty>(getSelectedAppProperty());
+    const [showReturnDefaultValues, setShowReturnDefaultValues] = useState<boolean>(false);
 
     // Methods
     function getSelectedAppProperty(): TextAppProperty {
@@ -186,54 +188,68 @@ export const PropertyConfigEditTab = (): JSX.Element => {
     }, [appPropertyConfig]);
 
     return (
-        <Box className={classes.configMenuContainer}>
-            {/* Property config */}
-            <List className={classes.list}>
-                {getPropertyConfigRender(selectedAppProperty.property)}
-            </List>
+        <>
+            <Box className={classes.configMenuContainer}>
+                {/* Property config */}
+                <List className={classes.list}>
+                    {getPropertyConfigRender(selectedAppProperty.property)}
+                </List>
 
-            {/* Footer */}
-            <Box>
-                <Divider />
+                {/* Footer */}
+                <Box>
+                    <Divider />
 
-                <Toolbar variant="dense" className={classes.toolBar}>
-                    <Tooltip
-                        placement="top"
-                        enterDelay={TOOLTIP_DELAY.SUB_MENU}
-                        enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                        title="Desfazer a ultima alteração"
-                        arrow
-                    >
-                        <IconButton
-                            classes={{ root: classes.iconHover }}
-                            color="default"
-                            size="small"
-                            aria-label="Desfazer a ultima alteração"
-                            onClick={() => undoChangeAppProperty(selectedAppProperty.property)}
+                    <Toolbar variant="dense" className={classes.toolBar}>
+                        <Tooltip
+                            placement="top"
+                            enterDelay={TOOLTIP_DELAY.SUB_MENU}
+                            enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
+                            title={selectedAppProperty.isActive ? 'Desfazer a ultima alteração' : ''}
+                            arrow
                         >
-                            <UndoIcon />
-                        </IconButton>
-                    </Tooltip>
+                            <IconButton
+                                classes={{ root: classes.iconHover }}
+                                color="default"
+                                size="small"
+                                aria-label="Desfazer a ultima alteração"
+                                onClick={() => undoChangeAppProperty(selectedAppProperty.property)}
+                                disabled={!selectedAppProperty.isActive}
+                            >
+                                <UndoIcon />
+                            </IconButton>
+                        </Tooltip>
 
-                    <Tooltip
-                        placement="top"
-                        enterDelay={TOOLTIP_DELAY.SUB_MENU}
-                        enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                        title="Voltar aos valores padrão"
-                        arrow
-                    >
-                        <IconButton
-                            classes={{ root: classes.iconHover }}
-                            color="default"
-                            size="small"
-                            aria-label="Voltar aos valores padrão"
-                            onClick={() => alert('Em breve!')}
+                        <Tooltip
+                            placement="top"
+                            enterDelay={TOOLTIP_DELAY.SUB_MENU}
+                            enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
+                            title={selectedAppProperty.isActive ? 'Voltar aos valores padrão' : ''}
+                            arrow
                         >
-                            <TuneIcon />
-                        </IconButton>
-                    </Tooltip>
-                </Toolbar>
+                            <IconButton
+                                classes={{ root: classes.iconHover }}
+                                color="default"
+                                size="small"
+                                aria-label="Voltar aos valores padrão"
+                                onClick={() => setShowReturnDefaultValues(true)}
+                                disabled={!selectedAppProperty.isActive}
+                            >
+                                <TuneIcon />
+                            </IconButton>
+                        </Tooltip>
+                    </Toolbar>
+                </Box>
             </Box>
-        </Box>
+
+            {/* Dialogs */}
+
+            <GenericDialog
+                isOpen={showReturnDefaultValues}
+                title="Deseja voltar esta propriedade ao estado inicial?"
+                text="Esta ação irá desfazer o histórico e qualquer alteração feita nesta propriedade."
+                onConfirm={() => actionAppProperty.resetAppProperty(selectedAppProperty.property)}
+                onClose={() => setShowReturnDefaultValues(false)}
+            />
+        </>
     );
 };

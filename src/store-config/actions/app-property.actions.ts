@@ -7,7 +7,8 @@ import {
     ToggleAppPropertyAction,
     UpdateAppPropertySettings,
     UndoChangeAppPropertyAction,
-    ResetAllAppPropertyAction
+    ResetAllAppPropertyAction,
+    ResetAppPropertyAction
 } from '../../shared/models/actions/app-property-action.model';
 
 export const actionAppProperty = {
@@ -33,6 +34,11 @@ export const actionAppProperty = {
 
     resetAllAppProperty: () => {
         const updateAppPropertySettingsAction: ResetAllAppPropertyAction = { type: 'RESET_ALL_APP_PROPERTY' };
+        store.dispatch(updateAppPropertySettingsAction);
+    },
+
+    resetAppProperty: (propertyName: PROPERTY_NAME) => {
+        const updateAppPropertySettingsAction: ResetAppPropertyAction = { type: 'RESET_APP_PROPERTY', propertyName };
         store.dispatch(updateAppPropertySettingsAction);
     }
 };
