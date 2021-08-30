@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// Translates
+import { i18n } from "../../../translate/i18n";
 // Components
 import { CssCode } from "../../../shared/components/css-code/css-code.component";
 import { TextViewEdit } from "../../../shared/components/text-view-edit/text-view-edit.component";
@@ -44,16 +46,15 @@ export const AppViewMenu = (): JSX.Element => {
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={(event: React.ChangeEvent<{}>, tabNumber: number) => setSelectedTab(tabNumber)}
-                    aria-label="disabled tabs example"
                 >
                     <Tab
-                        label="Código CSS"
-                        aria-label="Resultado do código CSS"
+                        label={i18n.t('tab.appViewMenu.cssCode.label')}
+                        aria-label={i18n.t('tab.appViewMenu.cssCode.ariaLabel')}
                         onClick={() => setSelectedTabName(TAB_NAME.RESULT_OF_CSS_CODE)}
                     />
                     <Tab
-                        label="Editar texto"
-                        aria-label="Editar texto do visualizador"
+                        label={i18n.t('tab.appViewMenu.textEdit.label')}
+                        aria-label={i18n.t('tab.appViewMenu.textEdit.ariaLabel')}
                         onClick={() => setSelectedTabName(TAB_NAME.EDIT_APP_VIEW_TEXT)}
                     />
                 </Tabs>
