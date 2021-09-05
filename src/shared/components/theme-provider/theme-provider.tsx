@@ -20,9 +20,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     useEffect(() => {
-        localStorage.getItem(STORAGE_KEY.THEME);
-        if (theme !== localStorage.getItem(STORAGE_KEY.THEME)) {
-            toggleTheme();
+        const currentTheme = localStorage.getItem(STORAGE_KEY.THEME);
+
+        if (currentTheme) {
+            setTheme((currentTheme as Theme));
+        } else {
+            localStorage.setItem(STORAGE_KEY.THEME, 'light');
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
