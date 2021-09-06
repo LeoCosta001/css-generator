@@ -13,7 +13,13 @@ export const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             alignItems: 'center',
             height: `calc(100vh - ${appResultHeight}px - ${headerBarHeight}px - ${marginY * 2}px)`,
-            margin: `${marginY}px 100px`
+            margin: `${marginY}px 100px`,
+            [theme.breakpoints.down('md')]: {
+                margin: `${marginY}px 40px`,
+            },
+            [theme.breakpoints.down('sm')]: {
+                margin: `${marginY}px 20px`,
+            }
         }
     }),
 );
