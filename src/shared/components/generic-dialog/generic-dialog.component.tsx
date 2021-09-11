@@ -1,3 +1,5 @@
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Material-ui
 import {
     Dialog,
@@ -37,10 +39,10 @@ export const GenericDialog = (props: GenericDialogProps): JSX.Element => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={props.onClose} color="primary">
-                    Cancelar
+                    {i18n.t('button.cancel')}
                 </Button>
                 <Button onClick={onConfirm} color="primary" autoFocus>
-                    Confirmar
+                    {i18n.t('button.ok')}
                 </Button>
             </DialogActions>
         </Dialog>

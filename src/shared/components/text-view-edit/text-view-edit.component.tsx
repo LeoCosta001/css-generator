@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import { loremIpsum } from 'react-lorem-ipsum';
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Actions
 import { actionTextView } from '../../../store-config/actions/text-view.actions';
 // Material-ui
@@ -41,7 +43,7 @@ export const TextViewEdit = (): JSX.Element => {
                         avgSentencesPerParagraph: 2
                     })[0])}
                 >
-                    Gerar texto aleatório
+                    {i18n.t('button.generateRandomText.name')}
                 </Button>
             </Box>
         </>

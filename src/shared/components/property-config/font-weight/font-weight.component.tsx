@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
@@ -63,15 +65,33 @@ export const FontWeightConfig = (props: FontWeightConfigProps): JSX.Element => {
 
     return (
         <form>
-            <PropertyConfigItem title="Alongamento">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.fontWeight.title')}>
                 <Grid container spacing={1}>
                     <PredefinedValuesFields
                         predefinedValue={formValue.predefinedValue}
                         predefinedValueInputName="predefinedValue"
                         predefinedValueList={[
-                            { title: true, list: ['Palavras-chave', ...keywordFontWeightValueList] },
-                            { title: true, list: ['Relativos', ...relativeFontWeightValueList] },
-                            { title: true, list: ['Globais', ...globalValueList] },
+                            {
+                                title: true,
+                                list: [
+                                    i18n.t('propertyConfigItem.fontWeight.predefinedValueTitle.keywords'),
+                                    ...keywordFontWeightValueList
+                                ]
+                            },
+                            {
+                                title: true,
+                                list: [
+                                    i18n.t('propertyConfigItem.fontWeight.predefinedValueTitle.relative'),
+                                    ...relativeFontWeightValueList
+                                ]
+                            },
+                            {
+                                title: true,
+                                list: [
+                                    i18n.t('propertyConfigItem.fontWeight.predefinedValueTitle.global'),
+                                    ...globalValueList
+                                ]
+                            },
                         ]}
                         validateFields={validateFields}
                     />

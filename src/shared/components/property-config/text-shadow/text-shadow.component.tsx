@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Constants
 import { textShadowEmpty } from '../../../models/empty-property-config.model';
 // Components
@@ -175,7 +177,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
     return (
         <form>
-            <PropertyConfigItem title="Selecionar sombra">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.textShadow.selectShadow.title')}>
                 <>
                     <Box pb={2} display="flex" justifyContent="space-between">
                         <Button
@@ -185,7 +187,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                             onClick={addTextShadowTab}
                             disabled={totalTextShadowTab === maxTextShadowTab}
                         >
-                            Adicionar
+                            {i18n.t('button.add')}
                         </Button>
                         <Button
                             variant="contained"
@@ -194,7 +196,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                             onClick={removeTextShadowTab}
                             disabled={totalTextShadowTab === 1}
                         >
-                            Remover
+                            {i18n.t('button.remove')}
                         </Button>
                     </Box>
                     <Box className={classes.pagination} display="flex" justifyContent="center">
@@ -214,7 +216,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
             <Divider />
 
-            <PropertyConfigItem title="Cor">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.textShadow.color.title')}>
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentColorValueTab}
@@ -252,8 +254,20 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
                                 predefinedValue={formValue.value[currentTextShadowTab - 1].color.predefinedValue}
                                 predefinedValueInputName="predefinedValue_color"
                                 predefinedValueList={[
-                                    { title: true, list: ['Cores', ...keywordColorValueList], isColorList: true },
-                                    { title: true, list: ['Globais', ...globalValueList] },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.textShadow.color.predefinedValueTitle.color'),
+                                            ...keywordColorValueList
+                                        ],
+                                        isColorList: true },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.textShadow.color.predefinedValueTitle.global'),
+                                            ...globalValueList
+                                        ]
+                                    },
                                 ]}
                                 validateFields={validateFields}
                             />
@@ -264,7 +278,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
             <Divider />
 
-            <PropertyConfigItem title="Posicionamento Y">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.textShadow.positionY.title')}>
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].positionY.value}
@@ -280,7 +294,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
             <Divider />
 
-            <PropertyConfigItem title="Posicionamento X">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.textShadow.positionX.title')}>
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].positionX.value}
@@ -296,7 +310,7 @@ export const TextShadowConfig = (props: TextShadowConfigProps): JSX.Element => {
 
             <Divider />
 
-            <PropertyConfigItem title="Desfoque">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.textShadow.blur.title')}>
                 <Grid container spacing={1}>
                     <MeasurementUnitsFields
                         value={formValue.value[currentTextShadowTab - 1].blurRadius.value}

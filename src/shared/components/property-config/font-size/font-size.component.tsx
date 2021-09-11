@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
@@ -84,7 +86,7 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
 
     return (
         <form>
-            <PropertyConfigItem title="Tamanho">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.fontSize.title')}>
                 <>
                     <ValueTypeButtonGroup
                         valueTypeName="valueType"
@@ -115,9 +117,27 @@ export const FontSizeConfig = (props: FontSizeConfigProps): JSX.Element => {
                                 predefinedValue={formValue.predefinedValue}
                                 predefinedValueInputName="predefinedValue"
                                 predefinedValueList={[
-                                    { title: true, list: ['Absolutos', ...absoluteSizeList] },
-                                    { title: true, list: ['Relativos', ...relativeFontSizeList] },
-                                    { title: true, list: ['Globais', ...globalValueList] },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.fontSize.predefinedValueTitle.absolutes'),
+                                            ...absoluteSizeList
+                                        ]
+                                    },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.fontSize.predefinedValueTitle.relative'),
+                                            ...relativeFontSizeList
+                                        ]
+                                    },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.fontSize.predefinedValueTitle.global'),
+                                            ...globalValueList
+                                        ]
+                                    },
                                 ]}
                                 validateFields={validateFields}
                             />

@@ -1,4 +1,6 @@
 import moment from 'moment';
+// Translates
+import { i18n } from '../../translate/i18n';
 // Models
 import { TextAppProperty, TextAppPropertyState } from '../../shared/models/app/text-app-property.model';
 import { PROPERTY_NAME } from '../../shared/models/property-name.model';
@@ -11,7 +13,6 @@ import {
     UndoChangeAppPropertyAction,
     UpdateAppPropertySettings
 } from '../../shared/models/actions/app-property-action.model';
-
 // Interfaces
 type TextAppActions = ToggleAppPropertyAction | SelectAppPropertyAction | UpdateAppPropertySettings | ResetAllAppPropertyAction | ResetAppPropertyAction | UndoChangeAppPropertyAction;
 
@@ -21,70 +22,70 @@ const INITIAL_STATE: TextAppPropertyState = {
     list: [
         {
             property: PROPERTY_NAME.COLOR,
-            description: 'Altera a cor dos caracteres',
+            description: i18n.t('redux.property.color.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.COLOR]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_FAMILY,
-            description: 'Define uma lista de prioridades em que diferentes fontes serão aplicadas',
+            description: i18n.t('redux.property.fontFamily.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_FAMILY]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_SIZE,
-            description: 'Altera o tamanho  dos caracteres',
+            description: i18n.t('redux.property.fontSize.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_SIZE]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_STRETCH,
-            description: 'Altera o alongamento dos caracteres',
+            description: i18n.t('redux.property.fontStretch.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_STRETCH]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_STYLE,
-            description: 'Altera o estilo de inclinação da fonte (itálico, oblíquo, etc...)',
+            description: i18n.t('redux.property.fontStyle.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_STYLE]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_VARIANT,
-            description: 'Esta é uma propriedade abreviada que possibilita aplicar diferentes variações na fonte',
+            description: i18n.t('redux.property.fontVariant.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_VARIANT]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.FONT_WEIGHT,
-            description: 'Altera a espessura dos caracteres',
+            description: i18n.t('redux.property.fontWeight.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.FONT_WEIGHT]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.LETTER_SPACING,
-            description: 'Altera o espaçamento entre os caracteres',
+            description: i18n.t('redux.property.letterSpacing.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.LETTER_SPACING]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.TEXT_SHADOW,
-            description: 'Aplica sombra nos caracteres',
+            description: i18n.t('redux.property.textShadow.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.TEXT_SHADOW]: null },
             propertySettingsHistory: []
         },
         {
             property: PROPERTY_NAME.WORD_SPACING,
-            description: 'Altera o espaçamento entre as palavras',
+            description: i18n.t('redux.property.wordSpacing.description'),
             isActive: false,
             propertySettings: { [PROPERTY_NAME.WORD_SPACING]: null },
             propertySettingsHistory: []

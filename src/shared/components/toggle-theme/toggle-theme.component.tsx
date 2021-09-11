@@ -3,6 +3,8 @@ import { useContext } from 'react';
 import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Components
 import { ThemeContext } from '../theme-provider/theme-provider';
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Material-ui
 import {
     IconButton,
@@ -20,13 +22,17 @@ export const ToggleTheme = (): JSX.Element => {
         <Tooltip
             enterDelay={TOOLTIP_DELAY.HEADER_BAR}
             enterNextDelay={TOOLTIP_DELAY.HEADER_BAR}
-            title={theme === "dark" ? "Modo claro" : "Modo escuro"}
+            title={
+                theme === "dark" ?
+                    (i18n.t('button.toggleTheme.tooltip.lightTheme') as string) :
+                    (i18n.t('button.toggleTheme.tooltip.darkTheme') as string)
+            }
             arrow
         >
             <IconButton
                 color="inherit"
                 size="small"
-                aria-label="Alternar tema claro/escuro"
+                aria-label={i18n.t('button.toggleTheme.ariaLabel')}
                 onClick={toggleTheme}
             >
                 {

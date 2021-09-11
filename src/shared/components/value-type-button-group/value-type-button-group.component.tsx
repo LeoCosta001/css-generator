@@ -1,3 +1,5 @@
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Models
 import { VALUE_TYPE } from '../../models/property-config.model';
 // Material-ui
@@ -29,15 +31,15 @@ export const ValueTypeButtonGroup = (props: ValueTypeButtonGroupProps): JSX.Elem
                         props.setCurrentValueTab(value);
                     }
                 }}
-                aria-label="Tipo de seleção de valores"
+                aria-label={i18n.t('buttonGroup.valueType.buttonGroupContainer.ariaLabel')}
                 size="small"
             >
-                <ToggleButton value={VALUE_TYPE.FREE} aria-label="Valores explicitos">
-                    Livre
-                    </ToggleButton>
-                <ToggleButton value={VALUE_TYPE.PREDEFINED} aria-label="Valores pré-definidos">
-                    Pré-definido
-                    </ToggleButton>
+                <ToggleButton value={VALUE_TYPE.FREE} aria-label={i18n.t('buttonGroup.valueType.free.ariaLabel')}>
+                    {i18n.t('buttonGroup.valueType.free.name')}
+                </ToggleButton>
+                <ToggleButton value={VALUE_TYPE.PREDEFINED} aria-label={i18n.t('buttonGroup.valueType.predefined.ariaLabel')}>
+                    {i18n.t('buttonGroup.valueType.predefined.name')}
+                </ToggleButton>
             </ToggleButtonGroup>
         </Box>
     );

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+// Translations
+import { i18n } from '../../../../translate/i18n';
 // Redux
 import { actionAppProperty } from '../../../../store-config/actions/app-property.actions';
 // Constants
@@ -173,7 +175,7 @@ export const PropertyConfigEditTab = (): JSX.Element => {
         return (
             <>
                 <PropertyConfigItem>
-                    <Box textAlign="center">Propriedade desativada.</Box>
+                    <Box textAlign="center">{i18n.t('content.propertyMessageDisabled')}</Box>
                 </PropertyConfigItem>
                 <Divider />
             </>
@@ -204,14 +206,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                             placement="top"
                             enterDelay={TOOLTIP_DELAY.SUB_MENU}
                             enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                            title={selectedAppProperty.isActive ? 'Desfazer a ultima alteração' : ''}
+                            title={selectedAppProperty.isActive ? (i18n.t('button.undoLastChange.tooltip') as string) : ''}
                             arrow
                         >
                             <IconButton
                                 classes={{ root: classes.iconHover }}
                                 color="default"
                                 size="small"
-                                aria-label="Desfazer a ultima alteração"
+                                aria-label={i18n.t('button.undoLastChange.ariaLabel')}
                                 onClick={() => undoChangeAppProperty(selectedAppProperty.property)}
                                 disabled={!selectedAppProperty.isActive}
                             >
@@ -223,14 +225,14 @@ export const PropertyConfigEditTab = (): JSX.Element => {
                             placement="top"
                             enterDelay={TOOLTIP_DELAY.SUB_MENU}
                             enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                            title={selectedAppProperty.isActive ? 'Voltar aos valores padrão' : ''}
+                            title={selectedAppProperty.isActive ? (i18n.t('button.returnDefaultValues.tooltip') as string) : ''}
                             arrow
                         >
                             <IconButton
                                 classes={{ root: classes.iconHover }}
                                 color="default"
                                 size="small"
-                                aria-label="Voltar aos valores padrão"
+                                aria-label={i18n.t('button.returnDefaultValues.ariaLabel')}
                                 onClick={() => setShowReturnDefaultValues(true)}
                                 disabled={!selectedAppProperty.isActive}
                             >
@@ -245,8 +247,8 @@ export const PropertyConfigEditTab = (): JSX.Element => {
 
             <GenericDialog
                 isOpen={showReturnDefaultValues}
-                title="Deseja voltar esta propriedade ao estado inicial?"
-                text="Esta ação irá desfazer o histórico e qualquer alteração feita nesta propriedade."
+                title={i18n.t('dialog.returnDefaultValues.title')}
+                text={i18n.t('dialog.returnDefaultValues.text')}
                 onConfirm={() => actionAppProperty.resetAppProperty(selectedAppProperty.property)}
                 onClose={() => setShowReturnDefaultValues(false)}
             />

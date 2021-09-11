@@ -1,3 +1,6 @@
+import { useHistory } from 'react-router-dom';
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Components
 import { ToggleTheme } from '../toggle-theme/toggle-theme.component';
 import { ChangeLanguage } from '../change-language/change-language.component';
@@ -11,11 +14,12 @@ import {
     IconButton
 } from '@material-ui/core';
 import {
-    Menu as MenuIcon
+    ArrowBack as ArrowBackIcon
 } from '@material-ui/icons';
 
 export const HeaderBar = (): JSX.Element => {
     const classes = useStyles();
+    const history = useHistory();
 
     return (
         <AppBar
@@ -27,12 +31,12 @@ export const HeaderBar = (): JSX.Element => {
                 <IconButton
                     color="inherit"
                     size="small"
-                    aria-label="Abrir Menu"
+                    aria-label={i18n.t('button.goBackPage.ariaLabel')}
                     edge="start"
                     className={classes.menuButton}
-                    onClick={() => alert('Em breve!')}
+                    onClick={() => history.push('/')}
                 >
-                    <MenuIcon />
+                    <ArrowBackIcon />
                 </IconButton>
                 <Box display="flex" flexDirection="row-reverse" flex="auto">
                     <ToggleTheme />

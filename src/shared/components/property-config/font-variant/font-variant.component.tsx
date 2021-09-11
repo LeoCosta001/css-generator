@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
@@ -62,14 +64,27 @@ export const FontVariantConfig = (props: FontVariantConfigProps): JSX.Element =>
 
     return (
         <form>
-            <PropertyConfigItem title="Variação">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.fontVariant.title')}>
                 <Grid container spacing={1}>
                     <PredefinedValuesFields
                         predefinedValue={formValue.predefinedValue}
                         predefinedValueInputName="predefinedValue"
                         predefinedValueList={[
-                            { title: true, list: ['Palavras-chave', ...keywordFontVariantValueList] },
-                            { title: true, list: ['Globais', ...globalValueList, 'revert'] },
+                            {
+                                title: true,
+                                list: [
+                                    i18n.t('propertyConfigItem.fontVariant.predefinedValueTitle.keywords'),
+                                    ...keywordFontVariantValueList
+                                ]
+                            },
+                            {
+                                title: true,
+                                list: [
+                                    i18n.t('propertyConfigItem.fontVariant.predefinedValueTitle.global'),
+                                    ...globalValueList,
+                                    'revert'
+                                ]
+                            },
                         ]}
                         validateFields={validateFields}
                     />

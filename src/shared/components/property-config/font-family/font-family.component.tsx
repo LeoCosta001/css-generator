@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { PredefinedValuesFields } from '../../generic-input/predefined-values/predefined-values.component';
@@ -61,7 +63,7 @@ export const FontFamilyConfig = (props: FontFamilyConfigProps): JSX.Element => {
 
     return (
         <form>
-            <PropertyConfigItem title="Fonte">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.fontFamily.title')}>
                 <Grid container spacing={1}>
                     <PredefinedValuesFields
                         predefinedValue={formValue.predefinedValue}

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Constants
 import { TOOLTIP_DELAY } from '../../constants/delay.constant';
 // Components
@@ -91,31 +93,31 @@ export const PropertyConfigMenu = (): JSX.Element => {
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={(event: React.ChangeEvent<{}>, tabNumber: number) => setSelectedTab(tabNumber)}
-                    aria-label="Abas de configuração de propriedades"
+                    aria-label={i18n.t('tab.propertyConfig.tabContainer.ariaLabel')}
                 >
                     <Tooltip
                         enterDelay={TOOLTIP_DELAY.SUB_MENU}
                         enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                        title="Editar propriedade"
+                        title={(i18n.t('tab.propertyConfig.propertyEdit.tooltip') as string)}
                         arrow
                     >
                         <Tab
                             className={classes.tab}
                             icon={<EditIcon />}
-                            aria-label="Editar propriedade"
+                            aria-label={i18n.t('tab.propertyConfig.propertyEdit.ariaLabel')}
                             onClick={() => setSelectedTabName(TAB_NAME.EDIT)}
                         />
                     </Tooltip>
                     <Tooltip
                         enterDelay={TOOLTIP_DELAY.SUB_MENU}
                         enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
-                        title={selectedAppProperty.propertySettingsHistory.length === 0 ? '' : "Histórico de alterações"}
+                        title={selectedAppProperty.propertySettingsHistory.length === 0 ? '' : (i18n.t('tab.propertyConfig.propertyHistory.tooltip') as string)}
                         arrow
                     >
                         <Tab
                             className={classes.tab}
                             icon={<HistoryIcon />}
-                            aria-label="Histórico de alterações"
+                            aria-label={i18n.t('tab.propertyConfig.propertyHistory.ariaLabel')}
                             onClick={() => setSelectedTabName(TAB_NAME.HISTORY)}
                             disabled={selectedAppProperty.propertySettingsHistory.length === 0}
                         />

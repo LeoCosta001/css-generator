@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+// Translates
+import { i18n } from '../../../translate/i18n';
 // Reducer
 import { actionAppProperty } from '../../../store-config/actions/app-property.actions';
 // Constants
@@ -63,36 +65,51 @@ export const PropertySelectMenu = (): JSX.Element => {
                     {/* Top menu */}
 
                     <Toolbar variant="dense" className={classes.toolBar}>
-                        <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Remover todos os estilos" arrow>
+                        <Tooltip
+                            enterDelay={TOOLTIP_DELAY.SUB_MENU}
+                            enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
+                            title={(i18n.t('button.resetAllStyles.tooltip') as string)}
+                            arrow
+                        >
                             <IconButton
                                 className={classes.iconButton}
                                 classes={{ root: classes.iconHover }}
                                 size="small"
-                                aria-label="Remover todos os estilos"
+                                aria-label={i18n.t('button.resetAllStyles.ariaLabel')}
                                 onClick={() => setShowRemoveAllStylesDialog(true)}
                             >
                                 <DeleteForeverIcon />
                             </IconButton>
                         </Tooltip>
 
-                        <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Estilos prontos" arrow>
+                        <Tooltip
+                            enterDelay={TOOLTIP_DELAY.SUB_MENU}
+                            enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
+                            title={(i18n.t('button.readyStyles.tooltip') as string)}
+                            arrow
+                        >
                             <IconButton
                                 className={classes.iconButton}
                                 classes={{ root: classes.iconHover }}
                                 size="small"
-                                aria-label="Estilos prontos"
+                                aria-label={i18n.t('button.readyStyles.ariaLabel')}
                                 onClick={() => alert('Em breve!')}
                             >
                                 <WidgetsIcon />
                             </IconButton>
                         </Tooltip>
 
-                        <Tooltip enterDelay={TOOLTIP_DELAY.SUB_MENU} enterNextDelay={TOOLTIP_DELAY.SUB_MENU} title="Infommações sobre as propriedades" arrow>
+                        <Tooltip
+                            enterDelay={TOOLTIP_DELAY.SUB_MENU}
+                            enterNextDelay={TOOLTIP_DELAY.SUB_MENU}
+                            title={(i18n.t('button.propertyDetails.tooltip') as string)}
+                            arrow
+                        >
                             <IconButton
                                 className={classes.iconButton}
                                 classes={{ root: classes.iconHover }}
                                 size="small"
-                                aria-label="Informações sobre as propriedades"
+                                aria-label={i18n.t('button.propertyDetails.ariaLabel')}
                                 onClick={() => alert('Em breve!')}
                             >
                                 <InfoIcon />
@@ -131,7 +148,11 @@ export const PropertySelectMenu = (): JSX.Element => {
                                                     size="small"
                                                     onChange={() => toggleAppProperty(textProperty.property, textProperty.isActive)}
                                                     checked={textProperty.isActive}
-                                                    inputProps={{ 'aria-labelledby': `Interrupitor de ${textProperty.description}` }}
+                                                    inputProps={{
+                                                        'aria-labelledby': i18n.t('switch.propertySelect.ariaLabel', {
+                                                            propertyName: textProperty.property
+                                                        })
+                                                    }}
                                                 />
                                             </ListItemSecondaryAction>
                                         </ListItem>
@@ -148,8 +169,8 @@ export const PropertySelectMenu = (): JSX.Element => {
 
             <GenericDialog
                 isOpen={showRemoveAllStylesDialog}
-                title="Deseja remover todos os estilos?"
-                text="Esta ação irá desfazer qualquer alteração feita anteriormente e desativar todas as propriedades."
+                title={i18n.t('dialog.resetAllStyles.title')}
+                text={i18n.t('dialog.resetAllStyles.text')}
                 onConfirm={() => actionAppProperty.resetAllAppProperty()}
                 onClose={() => setShowRemoveAllStylesDialog(false)}
             />

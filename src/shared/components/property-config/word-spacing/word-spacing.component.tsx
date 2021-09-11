@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// Translates
+import { i18n } from '../../../../translate/i18n';
 // Components
 import { PropertyConfigItem } from "../../property-config-menu/property-config-item/property-config-item.component";
 import { ValueTypeButtonGroup } from '../../value-type-button-group/value-type-button-group.component';
@@ -83,7 +85,7 @@ export const WordSpacingConfig = (props: WordSpacingConfigProps): JSX.Element =>
 
     return (
         <form>
-            <PropertyConfigItem title="Espaçamento">
+            <PropertyConfigItem title={i18n.t('propertyConfigItem.wordSpacing.title')}>
                 <>
                     <ValueTypeButtonGroup
                         currentValueTab={currentValueTab}
@@ -114,8 +116,20 @@ export const WordSpacingConfig = (props: WordSpacingConfigProps): JSX.Element =>
                                 predefinedValue={formValue.predefinedValue}
                                 predefinedValueInputName="predefinedValue"
                                 predefinedValueList={[
-                                    { title: true, list: ['Palavras-chave', ...keywordWordSpacingValueList] },
-                                    { title: true, list: ['Globais', ...globalValueList] },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.wordSpacing.predefinedValueTitle.keywords'),
+                                            ...keywordWordSpacingValueList
+                                        ]
+                                    },
+                                    {
+                                        title: true,
+                                        list: [
+                                            i18n.t('propertyConfigItem.wordSpacing.predefinedValueTitle.global'),
+                                            ...globalValueList
+                                        ]
+                                    },
                                 ]}
                                 validateFields={validateFields}
                             />
