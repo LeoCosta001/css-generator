@@ -7,6 +7,13 @@ export const useStyles = makeStyles((theme: Theme) =>
             zIndex: theme.zIndex.drawer + 1
         },
 
+        logo: {
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: 17,
+            fontWeight: 'lighter'
+        },
+
         menuButton: {
             marginRight: theme.spacing(2)
         },
