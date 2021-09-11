@@ -11,7 +11,7 @@ export const Routes = (): JSX.Element => {
         <Suspense fallback={<LinearProgress style={{ height: '0.6vh' }} />}>
             <Switch>
                 {/* Main page */}
-                <Route path="/app" exact component={AppPage} />
+                <Route path="/" exact component={AppPage} />
                 {/* Page Not Found */}
                 <Route component={NotFoundPage} />
             </Switch>
